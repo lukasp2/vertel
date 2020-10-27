@@ -6,7 +6,7 @@
 source ../colors.sh
 
 LOC=$(pwd); cd /
-ODOODIR="/home/lukas"
+ODOODIR="/usr/share"
 SEARCH="$1"
 
 if (( $# != 1 )); then
