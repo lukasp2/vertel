@@ -3,9 +3,9 @@ tools for vertel, or: extended odootools. \
 
 ## installation
 git clone git@github.com:lukasp2/vertel.git \
-mv vertel/ ~/
+mv vertel/* ~/
 
-## available tools
+## tools
 * **lpfind** - finds a module in /usr/share \
 usage: lpfind \[module_name\]
 
