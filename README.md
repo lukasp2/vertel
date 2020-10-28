@@ -1,10 +1,11 @@
 # Vertel
-tools for vertel, or: extended odootools. 
+Tools for vertel, or: Extended odootools
 
 ## Installation
-`git clone git@github.com:lukasp2/vertel.git` 
-
-`mv vertel/* ~/` \
+```
+git clone git@github.com:lukasp2/vertel.git
+mv vertel/* ~/
+```
 \
 *... and make sure ~/bin is in $PATH*
 
