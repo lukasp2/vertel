@@ -1,9 +1,13 @@
 # vertel
 tools for vertel, or: extended odootools. \
-clone contents of vertel/ to ~/
 
-finder: finds a module in /usr/share \
-finder [module name]
+## installation
+git clone git@github.com:lukasp2/vertel.git \
+mv vertel/ ~/
 
-odootail: odootail with colored output \
-odootail
+## available tools
+* **lpfind** - finds a module in /usr/share \
+usage: lpfind \[module_name\]
+
+* **lptail** - odootail with colored output \
+usage: odootail
