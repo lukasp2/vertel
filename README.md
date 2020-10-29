@@ -31,6 +31,6 @@ usage: `lpgrep [search_param]`
 usage: `lpgrep`
 
 ## Additionals
-* **lpps1** - a PS1 git branch indicator function for ~/.bash_aliases \
+* **lpps1** - a PS1 git branch indicator \
 usage: `lpps1`   *... or copy-paste the function and function call to ~/.bash_aliases to always use that setting*
 
