@@ -1,11 +1,8 @@
 #!/bin/bash
 
-# odootail with colored output
-
-sudo tail -f /var/log/odoo/odoo-server.log | awk ' {
-  if (/INFO/) {print "\033[0;32m" $0 "\033[0m"}
-  else if (/WARNING/) {print "\033[0;33m" $0 "\033[0m"}
-  else if (/ERROR/) {print "\033[0;31m" $0 "\033[0m"}
-  else {print $0} }
+tail -f log.txt | awk ' {
+  gsub("INFO", "\033[0;32mINFO\033[0m", $0); 
+  gsub("WARNING", "\033[0;33mWARNING\033[0m", $0);
+  gsub("ERROR", "\033[0;31mERROR\033[0m", $0);
+  print $0 };
 '
-
