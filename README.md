@@ -8,7 +8,7 @@ mv vertel/* ~/
 rm -rf vertel/
 ```
 \
-*... and make sure ~/bin is in $PATH, otherwise run* \
+*... and make sure ~/bin is in $PATH, otherwise run*
 ```
 export PATH=/home/$USER/bin:$PATH
 ```
