@@ -1,5 +1,5 @@
 # Vertel
-Tools for vertel, or: Extended odootools
+Extended odootools and additional tools for development at Vertel
 
 ## Installation
 ```
@@ -10,14 +10,14 @@ rm -rf vertel/
 \
 *... and make sure ~/bin is in $PATH*
 
-## Tools
+## Extended odootools
 * **lpfind** - finds a module in /usr/share \
 usage: `lpfind [module_name]`
 
 * **lptail** - odootail with colored output \
 usage: `lptail`
 
-## Upcomming
+### upcomming
 * **lprestart** - odoorestart; lptail \
 usage: `lprestart`
 
@@ -26,4 +26,7 @@ usage: `lpgrep [search_param]`
 
 * **lpcache** - dn-flush-cache; odoorestart; lptail \
 usage: `lpgrep`
+
+## Additionals
+* a PS1 git branch indicator function for ~/.bash_aliases
 
