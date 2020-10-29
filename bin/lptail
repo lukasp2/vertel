@@ -2,8 +2,10 @@
 
 # odootail with colored output
 
-sudo tail -f /var/log/odoo/odoo-server.log | awk '
-  /INFO/ {print "\033[0;32m" $0 "\033[0m"}
-  /WARNING/ {print "\033[0;33m" $0 "\033[0m"}
-  /ERROR/ {print "\033[0;31m" $0 "\033[0m"}
+sudo tail -f /var/log/odoo/odoo-server.log | awk ' {
+  if (/INFO/) {print "\033[0;32m" $0 "\033[0m"}
+  else if (/WARNING/) {print "\033[0;33m" $0 "\033[0m"}
+  else if (/ERROR/) {print "\033[0;31m" $0 "\033[0m"}
+  else {print $0} }
 '
+
