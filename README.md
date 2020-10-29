@@ -21,6 +21,9 @@ usage: `lpfind [module_name]`
 usage: `lptail`
 
 ### upcomming
+* **lpupdm** - improved odooupdm \
+usage: `lpupdm [database] [module] ...`
+
 * **lprestart** - odoorestart; lptail \
 usage: `lprestart`
 
