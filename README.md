@@ -10,7 +10,7 @@ rm -rf vertel/
 \
 *... and make sure ~/bin is in $PATH, otherwise run*
 ```
-export PATH=/home/$USER/bin:$PATH
+echo "export PATH=/home/$USER/bin:$PATH" >> ~/.bash_aliases
 ```
 
 ## Extended odootools
