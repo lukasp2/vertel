@@ -8,7 +8,8 @@ mv vertel/* ~/
 rm -rf vertel/
 ```
 \
-*... and make sure ~/bin is in $PATH*
+*... and make sure ~/bin is in $PATH, otherwise run* \
+`export PATH=/home/$USER/bin:$PATH`
 
 ## Extended odootools
 * **lpfind** - finds a module in /usr/share \
