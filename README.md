@@ -14,8 +14,8 @@ export PATH=/home/$USER/bin:$PATH
 ```
 
 ## Extended odootools
-* **lpfind** - finds a module in /usr/share \
-usage: `lpfind [module_name]`
+* **lpfind** - finds a module and lists inheritances in /usr/share \
+usage: `lpfind [module_name]`...
 
 * **lptail** - odootail with colored output \
 usage: `lptail`
