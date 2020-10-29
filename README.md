@@ -15,7 +15,7 @@ export PATH=/home/$USER/bin:$PATH
 
 ## Extended odootools
 * **lpfind** - finds a module and lists inheritances in /usr/share \
-usage: `lpfind [module_name] ...`
+usage: `lpfind [module] ...`
 
 * **lptail** - odootail with colored output \
 usage: `lptail`
@@ -25,10 +25,10 @@ usage: `lptail`
 usage: `lprestart`
 
 * **lpgrep** - grep -Rns $1 --include=py,xml \
-usage: `lpgrep [search_param]`
+usage: `lpgrep [search term]`
 
 * **lpcache** - dn-flush-cache; odoorestart; lptail \
-usage: `lpgrep`
+usage: `lpcache`
 
 ## Additionals
 * **lpps1** - a PS1 git branch indicator function for ~/.bash_aliases \
