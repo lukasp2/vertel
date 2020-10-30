@@ -1,0 +1,8 @@
+#!/bin/bash
+
+addons=""
+for file in /usr/share/odoo-*; do
+        addons+="$file,"
+        #echo $file | tr "\n" ","
+done
+echo ${addons:0:-1}
