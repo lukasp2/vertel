@@ -27,6 +27,9 @@ usage: `lpupdm [db] [module] ...`
 * **lprestart** - odoorestart; lptail \
 usage: `lprestart`
 
+* **lpaddons** - odooaddons that produces a more manually managable and readable $addons_path. \
+usage: `lpaddons`
+
 * **lpgrep** - grep -Rns $1 --include=py,xml \
 usage: `lpgrep [search term]`
 
