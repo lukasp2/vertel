@@ -21,6 +21,9 @@ usage: `lpfind [module] ...`
 usage: `lptail`
 
 ### upcomming
+* **lpupdm** - odooupdm with input validation and whitespace support \
+usage: `lpupdm`
+
 * **lprestart** - odoorestart; lptail \
 usage: `lprestart`
 
