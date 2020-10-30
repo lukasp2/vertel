@@ -1,9 +1,0 @@
-#!/bin/bash
-
-for dir in /usr/share/odoo*; do
-	chmod 775 $dir
-done
-
-for dir in /usr/share/odoo*; do
-	find $dir \( -type f -o -type d \) -print0 | xargs -0 chmod 775
-done
