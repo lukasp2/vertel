@@ -1,6 +1,6 @@
 #!/bin/bash
 
-tail -f log.txt | awk ' {
+tail -f /var/log/odoo/odoo-server.log | awk ' {
   gsub("INFO", "\033[0;32mINFO\033[0m", $0); 
   gsub("WARNING", "\033[0;33mWARNING\033[0m", $0);
   gsub("ERROR", "\033[0;31mERROR\033[0m", $0);

@@ -21,11 +21,14 @@ usage: `lpfind [module] ...`
 usage: `lptail`
 
 ### upcomming
-* **lpupdm** - odooupdm with input validation and whitespace support \
+* **lpupdm** - odooupdm with input validation (checks if db and modules exist) and whitespace support \
 usage: `lpupdm [db] [module] ...`
 
 * **lprestart** - odoorestart; lptail \
 usage: `lprestart`
+
+* **lpaddons** - odooaddons that produces a more manually managable and readable $addons_path. \
+usage: `lpaddons`
 
 * **lpgrep** - grep -Rns $1 --include=py,xml \
 usage: `lpgrep [search term]`
