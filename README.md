@@ -22,7 +22,7 @@ usage: `lptail`
 
 ### upcomming
 * **lpupdm** - odooupdm with input validation and whitespace support \
-usage: `lpupdm`
+usage: `lpupdm [db] [module] ...`
 
 * **lprestart** - odoorestart; lptail \
 usage: `lprestart`
