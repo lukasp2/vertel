@@ -1,7 +1,16 @@
 #!/bin/bash
 
 addons=""
+
+# adding all projects from /usr/share
 for file in /usr/share/odoo-*; do
         addons+="$file,"
 done
+
+# adding all odooext
+# TODO
+
+# adding all from core
+# TODO
+
 echo ${addons:0:-1}
