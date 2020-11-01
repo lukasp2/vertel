@@ -20,7 +20,7 @@ usage: `lpfind [module] ...`
 * **lptail** - odootail with colored output \
 usage: `lptail`
 
-* **lpaddons** - configure your addons_path the easy way \
+* **lpaddons** - GUI tool to add and remove projects from your $addons_path \
 usage: `lpaddons`
 
 ### upcomming
