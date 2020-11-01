@@ -30,6 +30,9 @@ usage: `lpupdm [db] [module] ...`
 * **lpgrep** - grep -Rns $1 --include=py,xml \
 usage: `lpgrep [search term]`
 
+* **lpsyncall** - odoosyncall with input validation (patch for fatal bug) \
+usage: `lpupdm [db] [module] ...`
+
 ## Additionals
 * **lpps1** - a PS1 git branch indicator function for ~/.bash_aliases \
 usage: `lpps1`   *... or copy-paste the function and function call to ~/.bash_aliases to always use that setting*
