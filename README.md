@@ -27,11 +27,8 @@ usage: `lpaddons`
 * **lpupdm** - odooupdm with input validation (checks if db and modules exist) and whitespace support \
 usage: `lpupdm [db] [module] ...`
 
-* **lpgrep** - grep -Rns $1 --include=py,xml \
-usage: `lpgrep [search term]`
-
-* **lpsyncall** - odoosyncall with input validation (patch for fatal bug) \
-usage: `lpupdm [db] [module] ...`
+* **lpsyncall** - odoosyncall with input validation (fatal bug patch) \
+usage: `lpsyncall [db] [module] ...`
 
 ## Additionals
 * **lpps1** - a PS1 git branch indicator function for ~/.bash_aliases \
