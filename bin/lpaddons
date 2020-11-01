@@ -1,34 +1,36 @@
 #!/bin/bash
 
-# requires 'dialog' to be installed on your system. (~1 MB)
-# sudo apt show dialog
-# we can grep out to check if its installed, otherwise return error?
-
 ODOO_SERVER_CONF=./odooconf
 
-export ODOOADDONS=`ls -d /usr/share/odoo-* /usr/share/odooext-* 2> /dev/null | grep -v odoo-addons | paste -sd ","`
+#export ODOOADDONS=`ls -d /usr/share/odoo-* /usr/share/odooext-* 2> /dev/null | grep -v odoo-addons | paste -sd ","`
 
-#ODOOADDONS="/usr/share/odoo-account0,/usr/share/odoo-account1,/usr/share/odoo-account2,/usr/share/odoo-account3,/usr/share/odoo-account4,/usr/share/odoo-account5,/usr/share/odoo-account6,/usr/share/odoo-account7,/usr/share/odoo-account8,/usr/share/odoo-account9,/usr/share/odoo-account10,/usr/share/odoo-account11,/usr/share/odoo-account12,/usr/share/odoo-account13,/usr/share/odoo-account14,/usr/share/odoo-account15,/usr/share/odoo-account16,/usr/share/odoo-account17,/usr/share/odoo-account18"
+ODOOADDONS="/usr/share/odoo-projB,/usr/share/odoo-projA,/usr/share/odoo-projC,/usr/share/odoo-projE,/usr/share/odoo-projD,/usr/share/odoo-projF,/usr/share/odoo-projG,/usr/share/odoo-projH,/usr/share/odoo-projI,/usr/share/odoo-projJ,/usr/share/odoo-projK,/usr/share/odoo-projL,/usr/share/odoo-projM"
+
+# >>> CHECK REQUIREMENT
+if ! command -v dialog &> /dev/null; then
+    echo "'dialog' could not be found, is it installed?"
+    exit
+fi
+#
 
 # >>> FETCH AND PARSE $addons_path
-addons_path=$( grep "addons_path=" ${ODOO_SERVER_CONF} | cut -d "=" -f 2)
+addons_path=$( grep "addons_path=" "${ODOO_SERVER_CONF}" | cut -d "=" -f 2)
 declare -A addons_path_map
 
-IFS=','
-read -ra ADDONSPATHSARR <<< "$addons_path"
+IFS=','; read -ra ADDONSPATHSARR <<< "$addons_path"; IFS=' '
 for addon in "${ADDONSPATHSARR[@]}"; do
     addons_path_map["$addon"]=1
 done
-IFS=' '
 #
 
 # >>> PARSE $ODOOADDONS
 declare MENUOPTS
-IFS=','
-read -ra ODOOADDONSARR <<< "$ODOOADDONS"
+ODOOADDONS=$(echo "$ODOOADDONS" | tr ',' '\n' | sort | tr '\n' ',')
+
+IFS=','; read -ra ODOOADDONSARR <<< "$ODOOADDONS"; IFS=' '
 for addon in "${ODOOADDONSARR[@]}"; do
-    MENUOPTS+="$addon "
-    MENUOPTS+="hej "
+    MENUOPTS+=$(echo "$addon " | cut -d "/" -f 4)
+    MENUOPTS+=". "
     
     # check if $addon is in addons_path map.
     if [ ${addons_path_map["$addon"]} ]; then
@@ -37,11 +39,10 @@ for addon in "${ODOOADDONSARR[@]}"; do
 	MENUOPTS+="off "
     fi
 done
-IFS=' '
 #
 
 # >>> CREATE DIALOG
-dialog --title "Select modules to include in addons_path" \
+dialog --title "Select projects to include in addons_path" \
        --checklist "Select the modules you want to include in addons_path by marking them with '*' (press spacebar)" \
        40 60 30 \
        $MENUOPTS \
@@ -57,12 +58,16 @@ read -ra INCLUDEODOOADDONSARR <<< "$include"
 # >>> CREATE NEW addons_path
 addons_path=""
 for addon in "${INCLUDEODOOADDONSARR[@]}"; do
-    addons_path+="${addon},"
+    addons_path+="/usr/share/${addon},"
 done
-addons_path=${addons_path:0:-1}
-echo "addons_path=$addons_path"
+
+# remove trailing comma 
+if [ ${#addons_path} != 0 ]; then
+    addons_path=${addons_path:0:-1}
+fi 
 
 # >>> WRITE NEW PATH
 CWD="s/^addons_path.*=.*$/addons_path="${addons_path//"/"/"\/"}"/g"
 sudo sed -ir "$CWD" "$ODOO_SERVER_CONF"
 
+clear
