@@ -15,20 +15,20 @@ export PATH=/home/$USER/bin:$PATH
 
 ## Extended odootools
 * **lpfind** - finds a module and lists inheritances in /usr/share \
-usage: `lpfind [module] ...`
+usage: `lpfind [MODULE] ...`
 
 * **lptail** - odootail with colored output \
 usage: `lptail`
 
 * **lpaddons** - GUI tool for adding and removing projects from your $addons_path \
-usage: `lpaddons`
+usage: `lpaddons [OPTIONS]`
 
 ### upcomming
 * **lpupdm** - odooupdm with input validation (checks if db and modules exist) and whitespace support \
-usage: `lpupdm [db] [module] ...`
+usage: `lpupdm [DB] [MODULE] ...`
 
 * **lpsyncall** - odoosyncall with input validation (fatal bug patch) \
-usage: `lpsyncall [db] [module] ...`
+usage: `lpsyncall [DB] [MODULE] ...`
 
 ## Additionals
 * **lpps1** - a PS1 git branch indicator function for ~/.bash_aliases \
