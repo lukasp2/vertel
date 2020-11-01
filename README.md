@@ -20,7 +20,7 @@ usage: `lpfind [module] ...`
 * **lptail** - odootail with colored output \
 usage: `lptail`
 
-* **lpaddons** - configure your addons_path the easy way \
+* **lpaddons** - GUI tool to add and remove projects from your $addons_path \
 usage: `lpaddons`
 
 ### upcomming
@@ -29,6 +29,9 @@ usage: `lpupdm [db] [module] ...`
 
 * **lpgrep** - grep -Rns $1 --include=py,xml \
 usage: `lpgrep [search term]`
+
+* **lpsyncall** - odoosyncall with input validation (patch for fatal bug) \
+usage: `lpupdm [db] [module] ...`
 
 ## Additionals
 * **lpps1** - a PS1 git branch indicator function for ~/.bash_aliases \
