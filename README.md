@@ -20,12 +20,12 @@ usage: `lpfind [module] ...`
 * **lptail** - odootail with colored output \
 usage: `lptail`
 
+* **lpaddons** - configure your addons_path the easy way \
+usage: `lpaddons`
+
 ### upcomming
 * **lpupdm** - odooupdm with input validation (checks if db and modules exist) and whitespace support \
 usage: `lpupdm [db] [module] ...`
-
-* **lpaddons** - odooaddons that produces a more manually managable and readable $addons_path. \
-usage: `lpaddons`
 
 * **lpgrep** - grep -Rns $1 --include=py,xml \
 usage: `lpgrep [search term]`
