@@ -21,7 +21,13 @@ usage: `lpfind [MODULE] ...`
 usage: `lptail`
 
 * **lpaddons** - GUI tool for adding and removing projects from your $addons_path \
-usage: `lpaddons [OPTIONS]`
+usage: `lpaddons [OPTIONS] ...`
+```
+OPTIONS:
+-r, --reset: clear all addons
+-a, --all: add all addons (default)
+-c, --customize: customize addons
+```
 
 ### upcomming
 * **lpupdm** - odooupdm with input validation (checks if db and modules exist) and whitespace support \
