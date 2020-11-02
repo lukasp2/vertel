@@ -102,6 +102,7 @@ dialog --title "Select projects to include in addons_path" \
 # handling cancelling dialog
 if [[ $? != 0 ]]; then
     rm lpaddons_output.txt
+    clear
     exit 0
 fi
 #
