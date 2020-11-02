@@ -3,7 +3,7 @@ Extended odootools and additional tools for development at Vertel
 
 ## Installation
 ```
-git clone git@github.com:lukasp2/vertel.git
+git clone https://github.com/lukasp2/vertel.git
 mv vertel/* ~/
 rm -rf vertel/
 ```
