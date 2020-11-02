@@ -10,7 +10,7 @@ ODOOADDONS=`ls -d /usr/share/odoo-* /usr/share/odooext-* 2> /dev/null | grep -v 
 # >>> INPUT PARSING
 ! getopt --test > /dev/null 
 if [[ ${PIPESTATUS[0]} -ne 4 ]]; then
-    echo 'I’m sorry, `getopt --test` failed in this environment.'
+    echo '`getopt --test` failed in this environment.'
     exit 1
 fi
 
