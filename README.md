@@ -29,6 +29,10 @@ OPTIONS:
 -c, --customize: customize addons
 ```
 
+## Additionals
+* **lpps1** - a PS1 git branch indicator function for ~/.bash_aliases \
+usage: `lpps1`   *... or copy-paste the function and function call to ~/.bash_aliases to always use that setting*
+
 ### upcomming
 * **lpupdm** - odooupdm with input validation (checks if db and modules exist) and whitespace support \
 usage: `lpupdm [DB] [MODULE] ...`
@@ -39,14 +43,10 @@ usage: `lpsyncall [DB] [MODULE] ...`
 * **lpport** - attempt to port codebase from one odoo version to another
 usage: `lpport --from=[ODOOVERSION] --to=[ODOOVERSION]`
 
-* PATCH: **lpfind**
-specify a known field that exists in the module
+* PATCH: **lpfind** \
+specify a known field that exists in the module \ 
 grep -Rns -> grep -Rins
 
-* PATCH: **lptail**
-build in grep: lptail -g "~"
-
-## Additionals
-* **lpps1** - a PS1 git branch indicator function for ~/.bash_aliases \
-usage: `lpps1`   *... or copy-paste the function and function call to ~/.bash_aliases to always use that setting*
+* PATCH: **lptail** \ 
+build in grep: lptail -g "~" 
 
