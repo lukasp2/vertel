@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ODOO_SERVER_CONF=/etc/odoo/*.conf
+ODOO_SERVER_CONF=$(echo /etc/odoo/*.conf)
 ODOOADDONS=`ls -d /usr/share/odoo-* /usr/share/odooext-* 2> /dev/null | grep -v odoo-addons | paste -sd ","`
 
 # for testing:
@@ -8,9 +8,6 @@ ODOOADDONS=`ls -d /usr/share/odoo-* /usr/share/odooext-* 2> /dev/null | grep -v 
 #ODOOADDONS="/usr/share/odoo-projB,/usr/share/odoo-projA,/usr/share/odoo-projC,/usr/share/odoo-projE,/usr/share/odoo-projD,/usr/share/odoo-projF,/usr/share/odoo-projG,/usr/share/odoo-projH,/usr/share/odoo-projI,/usr/share/odoo-projJ,/usr/share/odoo-projK,/usr/share/odoo-projL,/usr/share/odoo-projM"
 
 # >>> INPUT PARSING
-# these switches turn some bugs into errors
-#set -o errexit -o pipefail -o noclobber -o nounset
-
 ! getopt --test > /dev/null 
 if [[ ${PIPESTATUS[0]} -ne 4 ]]; then
     echo 'I’m sorry, `getopt --test` failed in this environment.'
