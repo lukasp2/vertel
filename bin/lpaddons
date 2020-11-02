@@ -1,9 +1,9 @@
 #!/bin/bash
 
-ODOO_SERVER_CONF=./odooconf
-
 #export ODOOADDONS=`ls -d /usr/share/odoo-* /usr/share/odooext-* 2> /dev/null | grep -v odoo-addons | paste -sd ","`
 
+# for testing:
+ODOO_SERVER_CONF=./odooconf
 ODOOADDONS="/usr/share/odoo-projB,/usr/share/odoo-projA,/usr/share/odoo-projC,/usr/share/odoo-projE,/usr/share/odoo-projD,/usr/share/odoo-projF,/usr/share/odoo-projG,/usr/share/odoo-projH,/usr/share/odoo-projI,/usr/share/odoo-projJ,/usr/share/odoo-projK,/usr/share/odoo-projL,/usr/share/odoo-projM"
 
 # >>> CHECK REQUIREMENT
