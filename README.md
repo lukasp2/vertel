@@ -43,10 +43,9 @@ usage: `lpsyncall [DB] [MODULE] ...`
 * **lpport** - attempt to port codebase from one odoo version to another
 usage: `lpport --from=[ODOOVERSION] --to=[ODOOVERSION]`
 
-* PATCH: **lpfind** \
-specify a known field that exists in the module \ 
-grep -Rns -> grep -Rins
+* PATCH: **lpfind** - specify a known field that exists in the module
 
-* PATCH: **lptail** \ 
-build in grep: lptail -g "~" 
+* PATCH: **lpfind** - grep -Rns -> grep -Rins
+
+* PATCH: **lptail** - build in grep: lptail -g "~" 
 
