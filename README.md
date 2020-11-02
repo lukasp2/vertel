@@ -16,9 +16,11 @@ export PATH=/home/$USER/bin:$PATH
 ## Extended odootools
 * **lpfind** - finds a module and lists inheritances in /usr/share \
 usage: `lpfind [MODULE] ...`
+TODO: specify a known field that exists in the module. grep -Rins
 
 * **lptail** - odootail with colored output \
 usage: `lptail`
+TODO: build in grep: lptail -g "~", -e (only errors)
 
 * **lpaddons** - GUI tool for adding and removing projects from your $addons_path \
 usage: `lpaddons [OPTIONS] ...`
