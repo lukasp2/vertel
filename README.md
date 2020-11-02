@@ -40,12 +40,10 @@ usage: `lpupdm [DB] [MODULE] ...`
 * **lpsyncall** - odoosyncall with input validation (fatal bug patch) \
 usage: `lpsyncall [DB] [MODULE] ...`
 
-* **lpport** - attempt to port codebase from one odoo version to another
+* **lpport** - attempt to port codebase from one odoo version to another \
 usage: `lpport --from=[ODOOVERSION] --to=[ODOOVERSION]`
 
-* PATCH: **lpfind** - specify a known field that exists in the module
-
-* PATCH: **lpfind** - grep -Rns -> grep -Rins
+* PATCH: **lpfind** - specify a known field that exists in the module (with grep -Rins)
 
 * PATCH: **lptail** - build in grep: lptail -g "~" 
 
