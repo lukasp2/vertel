@@ -14,8 +14,8 @@ if [[ ${PIPESTATUS[0]} -ne 4 ]]; then
     exit 1
 fi
 
-OPTIONS=ac
-LONGOPTS=all,customize
+OPTIONS=acr
+LONGOPTS=all,customize,clear
 
 ! PARSED=$(getopt --options=$OPTIONS --longoptions=$LONGOPTS --name "$0" -- "$@")
 if [[ ${PIPESTATUS[0]} -ne 0 ]]; then
@@ -24,11 +24,17 @@ fi
 # read getopt’s output this way to handle the quoting right:
 eval set -- "$PARSED"
 
-a=y
+a=y; r=n
 while true; do
     case "$1" in
 	-c|--customize)
 	    a=n
+            shift
+	    break
+            ;;
+	-r|--clear)
+	    a=n
+	    r=y
             shift
 	    break
             ;;
@@ -50,6 +56,13 @@ done
 # >>> -a | --all (default): ADD ALL ADDONS
 if [[ $a == y ]]; then
     CWD="s/^addons_path.*=.*$/addons_path="${ODOOADDONS//"/"/"\/"}"/g"
+    sudo sed -ir "$CWD" "$ODOO_SERVER_CONF"
+    exit 0
+fi
+
+# >>> -r | --clear: REMOVE ALL ADDONS
+if [[ $r == y ]]; then
+    CWD="s/^addons_path.*=.*$/addons_path=/g"
     sudo sed -ir "$CWD" "$ODOO_SERVER_CONF"
     exit 0
 fi
