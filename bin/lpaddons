@@ -6,10 +6,61 @@
 ODOO_SERVER_CONF=./odooconf
 ODOOADDONS="/usr/share/odoo-projB,/usr/share/odoo-projA,/usr/share/odoo-projC,/usr/share/odoo-projE,/usr/share/odoo-projD,/usr/share/odoo-projF,/usr/share/odoo-projG,/usr/share/odoo-projH,/usr/share/odoo-projI,/usr/share/odoo-projJ,/usr/share/odoo-projK,/usr/share/odoo-projL,/usr/share/odoo-projM"
 
+# >>> INPUT PARSING
+# these switches turn some bugs into errors
+#set -o errexit -o pipefail -o noclobber -o nounset
+
+! getopt --test > /dev/null 
+if [[ ${PIPESTATUS[0]} -ne 4 ]]; then
+    echo 'I’m sorry, `getopt --test` failed in this environment.'
+    exit 1
+fi
+
+OPTIONS=ac
+LONGOPTS=all,customize
+
+! PARSED=$(getopt --options=$OPTIONS --longoptions=$LONGOPTS --name "$0" -- "$@")
+if [[ ${PIPESTATUS[0]} -ne 0 ]]; then
+    exit 2
+fi
+# read getopt’s output this way to handle the quoting right:
+eval set -- "$PARSED"
+
+a=y
+while true; do
+    case "$1" in
+	-c|--customize)
+	    a=n
+            shift
+	    break
+            ;;
+	-a|--all) # defaulted
+	    shift
+	    break
+            ;;
+        --)
+            shift
+            break
+            ;;
+        *)
+            echo "Programming error"
+            exit 3
+            ;;
+    esac
+done
+
+# >>> -a | --all (default): ADD ALL ADDONS
+if [[ $a == y ]]; then
+    CWD="s/^addons_path.*=.*$/addons_path="${ODOOADDONS//"/"/"\/"}"/g"
+    sudo sed -ir "$CWD" "$ODOO_SERVER_CONF"
+    exit 0
+fi
+
+# >>> -c | --customize: CUSTOMIZE ADDONS
 # >>> CHECK REQUIREMENT
 if ! command -v dialog &> /dev/null; then
     echo "'dialog' could not be found, is it installed?"
-    exit
+    exit 4
 fi
 #
 
@@ -31,9 +82,8 @@ IFS=','; read -ra ODOOADDONSARR <<< "$ODOOADDONS"; IFS=' '
 for addon in "${ODOOADDONSARR[@]}"; do
     MENUOPTS+=$(echo "$addon " | cut -d "/" -f 4)
     MENUOPTS+=". "
-    
-    # check if $addon is in addons_path map.
-    if [ ${addons_path_map["$addon"]} ]; then
+    # check if $addon from $ODOOADDONS is in current $addons_path.
+    if [ ${addons_path_map["${addon}"]} ]; then
 	MENUOPTS+="on "
     else
 	MENUOPTS+="off "
@@ -47,6 +97,11 @@ dialog --title "Select projects to include in addons_path" \
        40 60 30 \
        $MENUOPTS \
        2> lpaddons_output.txt
+
+# handling cancelling dialog
+if [[ $? != 0 ]]; then
+    exit 5
+fi
 #
 
 # >>> PARSE OUTPUT OF DIALOG
