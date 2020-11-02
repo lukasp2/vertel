@@ -16,11 +16,9 @@ export PATH=/home/$USER/bin:$PATH
 ## Extended odootools
 * **lpfind** - finds a module and lists inheritances in /usr/share \
 usage: `lpfind [MODULE] ...`
-TODO: specify a known field that exists in the module. grep -Rins
 
 * **lptail** - odootail with colored output \
 usage: `lptail`
-TODO: build in grep: lptail -g "~", -e (only errors)
 
 * **lpaddons** - GUI tool for adding and removing projects from your $addons_path \
 usage: `lpaddons [OPTIONS] ...`
@@ -37,6 +35,16 @@ usage: `lpupdm [DB] [MODULE] ...`
 
 * **lpsyncall** - odoosyncall with input validation (fatal bug patch) \
 usage: `lpsyncall [DB] [MODULE] ...`
+
+* **lpport** - attempt to port codebase from one odoo version to another
+usage: `lpport --from=[ODOOVERSION] --to=[ODOOVERSION]`
+
+* PATCH: **lpfind**
+specify a known field that exists in the module
+grep -Rns -> grep -Rins
+
+* PATCH: **lptail**
+build in grep: lptail -g "~"
 
 ## Additionals
 * **lpps1** - a PS1 git branch indicator function for ~/.bash_aliases \
