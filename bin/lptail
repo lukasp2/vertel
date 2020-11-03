@@ -1,8 +1,58 @@
 #!/bin/bash
 
-tail -f /var/log/odoo/odoo-server.log | awk ' {
-  gsub("INFO", "\033[0;32mINFO\033[0m", $0); 
-  gsub("WARNING", "\033[0;33mWARNING\033[0m", $0);
-  gsub("ERROR", "\033[0;31mERROR\033[0m", $0);
-  print $0 };
-'
+! getopt --test > /dev/null 
+if [[ ${PIPESTATUS[0]} -ne 4 ]]; then
+    echo '`getopt --test` failed in this environment.'
+    exit 1
+fi
+
+OPTIONS=rg
+LONGOPTS=restart,grep
+
+! PARSED=$(getopt --options=$OPTIONS --longoptions=$LONGOPTS --name "$0" -- "$@")
+if [[ ${PIPESTATUS[0]} -ne 0 ]]; then
+    exit 2
+fi
+
+eval set -- "$PARSED"
+
+r=n; g=n;
+while true; do
+    case "$1" in
+	-r|--restart)
+	    r=y
+            shift
+            ;;
+	-g|--grep)
+	    g=y
+            shift
+            ;;
+        --)
+            shift
+            break
+            ;;
+        *)
+            echo "Programming error"
+            exit 3
+            ;;
+    esac
+done
+
+# >>> -r | --restart
+if [[ $r == y ]]; then
+    odoorestart
+fi
+    
+# >>> -g | --grep
+if [[ $g == y ]]; then
+    tail -f /var/log/odoo/odoo-server.log | grep "~"
+fi
+
+# >>> NORMAL OUTPUT
+if [[ $g != y ]]; then
+    tail -f /var/log/odoo/odoo-server.log | awk ' {
+        gsub("INFO", "\033[0;32mINFO\033[0m", $0); 
+    	gsub("WARNING", "\033[0;33mWARNING\033[0m", $0);
+      	gsub("ERROR", "\033[0;31mERROR\033[0m", $0);
+	print $0 };'
+fi
