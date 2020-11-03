@@ -4,7 +4,7 @@ ODOO_SERVER_CONF=$(echo /etc/odoo/*.conf)
 ODOOADDONS=`ls -d /usr/share/odoo-* /usr/share/odooext-* 2> /dev/null | grep -v odoo-addons | paste -sd ","`
 
 # for testing:
-#ODOO_SERVER_CONF=./odooconf
+#ODOO_SERVER_CONF="odooconf"
 #ODOOADDONS="/usr/share/odoo-projB,/usr/share/odoo-projA,/usr/share/odoo-projC,/usr/share/odoo-projE,/usr/share/odoo-projD,/usr/share/odoo-projF,/usr/share/odoo-projG,/usr/share/odoo-projH,/usr/share/odoo-projI,/usr/share/odoo-projJ,/usr/share/odoo-projK,/usr/share/odoo-projL,/usr/share/odoo-projM"
 
 # >>> INPUT PARSING
@@ -14,8 +14,8 @@ if [[ ${PIPESTATUS[0]} -ne 4 ]]; then
     exit 1
 fi
 
-OPTIONS=acr
-LONGOPTS=all,customize,clear
+OPTIONS=acrp
+LONGOPTS=all,customize,clear,print
 
 ! PARSED=$(getopt --options=$OPTIONS --longoptions=$LONGOPTS --name "$0" -- "$@")
 if [[ ${PIPESTATUS[0]} -ne 0 ]]; then
@@ -24,23 +24,26 @@ fi
 # read getopt’s output this way to handle the quoting right:
 eval set -- "$PARSED"
 
-a=y; r=n
+a=y; r=n; p=n
 while true; do
     case "$1" in
 	-c|--customize)
+	    c=y
 	    a=n
             shift
-	    break
             ;;
 	-r|--clear)
-	    a=n
 	    r=y
             shift
-	    break
             ;;
 	-a|--all) # defaulted
+	    a=y
 	    shift
-	    break
+            ;;
+	-p|--print)
+	    a=n
+	    p=y
+	    shift
             ;;
         --)
             shift
@@ -68,74 +71,83 @@ if [[ $r == y ]]; then
 fi
 
 # >>> -c | --customize: CUSTOMIZE ADDONS
-# >>> CHECK REQUIREMENT
-if ! command -v dialog &> /dev/null; then
-    echo "'dialog' could not be found, is it installed?"
-    exit 4
-fi
-#
-
-# >>> FETCH AND PARSE $addons_path
-addons_path=$( grep "addons_path=" "${ODOO_SERVER_CONF}" | cut -d "=" -f 2)
-declare -A addons_path_map
-
-IFS=','; read -ra ADDONSPATHSARR <<< "$addons_path"; IFS=' '
-for addon in "${ADDONSPATHSARR[@]}"; do
-    addons_path_map["$addon"]=1
-done
-#
-
-# >>> PARSE $ODOOADDONS
-declare MENUOPTS
-ODOOADDONS=$(echo "$ODOOADDONS" | tr ',' '\n' | sort | tr '\n' ',')
-
-IFS=','; read -ra ODOOADDONSARR <<< "$ODOOADDONS"; IFS=' '
-for addon in "${ODOOADDONSARR[@]}"; do
-    MENUOPTS+=$(echo "$addon " | cut -d "/" -f 4)
-    MENUOPTS+=". "
-    # check if $addon from $ODOOADDONS is in current $addons_path.
-    if [ ${addons_path_map["${addon}"]} ]; then
-	MENUOPTS+="on "
-    else
-	MENUOPTS+="off "
+if [[ $c == y ]]; then    
+    # >>> CHECK REQUIREMENT
+    if ! command -v dialog &> /dev/null; then
+	echo "'dialog' could not be found, is it installed?"
+	exit 4
     fi
-done
-#
+    #
 
-# >>> CREATE DIALOG
-sudo dialog --title "Select projects to include in addons_path" \
-       --checklist "Select the modules you want to include in addons_path by marking them with '*' (press spacebar)" \
-       40 60 30 \
-       $MENUOPTS \
-       2> lpaddons_output.txt
+    # >>> FETCH AND PARSE $addons_path
+    addons_path=$( grep "addons_path=" "${ODOO_SERVER_CONF}" | cut -d "=" -f 2)
+    declare -A addons_path_map
 
-# handling cancelling dialog
-if [[ $? != 0 ]]; then
-    rm lpaddons_output.txt
-    clear
-    exit 0
+    IFS=','; read -ra ADDONSPATHSARR <<< "$addons_path"; IFS=' '
+    for addon in "${ADDONSPATHSARR[@]}"; do
+	addons_path_map["$addon"]=1
+    done
+    #
+
+    # >>> PARSE $ODOOADDONS
+    declare MENUOPTS
+    ODOOADDONS=$(echo "$ODOOADDONS" | tr ',' '\n' | sort | tr '\n' ',')
+
+    IFS=','; read -ra ODOOADDONSARR <<< "$ODOOADDONS"; IFS=' '
+    for addon in "${ODOOADDONSARR[@]}"; do
+	MENUOPTS+=$(echo "$addon " | cut -d "/" -f 4)
+	MENUOPTS+=". "
+	# check if $addon from $ODOOADDONS is in current $addons_path.
+	if [ ${addons_path_map["${addon}"]} ]; then
+	    MENUOPTS+="on "
+	else
+	    MENUOPTS+="off "
+	fi
+    done
+    #
+
+    # >>> CREATE DIALOG
+    exec 3>&1;
+    res=$(dialog --title "Select projects to include in addons_path" \
+		 --checklist "Select the modules you want to include in addons_path by marking them with '*' (press spacebar)" \
+		 40 60 30 \
+		 $MENUOPTS \
+		 2>&1 1>&3)
+    exitcode=$?;
+    exec 3>&-;
+
+    # if dialog is Cancelled
+    if [[ $exitcode != 0 ]]; then
+	exit 0
+    fi
+    #
+
+    # >>> PARSE OUTPUT OF DIALOG
+    # The output is in lpaddons_output.txt and consists of project marked to be included in addons_path.
+    read -ra INCLUDEODOOADDONSARR <<< "$res"
+
+    # >>> CREATE NEW addons_path
+    addons_path=""
+    for addon in "${INCLUDEODOOADDONSARR[@]}"; do
+	addons_path+="/usr/share/${addon},"
+    done
+
+    # remove trailing comma 
+    if [ ${#addons_path} != 0 ]; then
+	addons_path=${addons_path:0:-1}
+    fi 
+
+    # >>> WRITE NEW PATH
+    CWD="s/^addons_path.*=.*$/addons_path="${addons_path//"/"/"\/"}"/g"
+    sudo sed -ir "$CWD" "$ODOO_SERVER_CONF"
+
+    clear -x
 fi
-#
 
-# >>> PARSE OUTPUT OF DIALOG
-# The output is in lpaddons_output.txt and consists of project marked to be included in addons_path.
-include=$( cat lpaddons_output.txt )
-rm lpaddons_output.txt
-read -ra INCLUDEODOOADDONSARR <<< "$include"
+# >>> -p | --print: PRINT addons_path
+if [[ $p == y ]]; then
+    grep "addons_path=" "$ODOO_SERVER_CONF"
+fi
 
-# >>> CREATE NEW addons_path
-addons_path=""
-for addon in "${INCLUDEODOOADDONSARR[@]}"; do
-    addons_path+="/usr/share/${addon},"
-done
 
-# remove trailing comma 
-if [ ${#addons_path} != 0 ]; then
-    addons_path=${addons_path:0:-1}
-fi 
 
-# >>> WRITE NEW PATH
-CWD="s/^addons_path.*=.*$/addons_path="${addons_path//"/"/"\/"}"/g"
-sudo sed -ir "$CWD" "$ODOO_SERVER_CONF"
-
-clear
