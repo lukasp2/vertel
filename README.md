@@ -8,9 +8,9 @@ mv ~/vertel/bin ~/vertel/resources ~/
 rm -rf ~/vertel/
 ```
 \
-*... and make sure ~/bin is in $PATH, otherwise run*
+*... and make sure ~/bin is in $PATH:*
 ```
-export PATH=/home/$USER/bin:$PATH
+[ -z $(echo $PATH | grep -o "/home/$USER/.local/bin:") ] && export PATH="/home/$USER/bin:$PATH"
 ```
 
 ## Extended odootools
