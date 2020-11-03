@@ -24,9 +24,10 @@ usage: `lptail`
 usage: `lpaddons [OPTIONS] ...`
 ```
 OPTIONS:
--r, --reset: clear all addons
 -a, --all: add all addons (default)
--c, --customize: customize addons
+-r, --reset: clear all addons
+-c, --customize: customize addons_path
+-p, --print: print current addons_path
 ```
 
 ## Additionals
