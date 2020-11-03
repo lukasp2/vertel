@@ -18,7 +18,12 @@ rm -rf ~/vertel/
 usage: `lpfind [MODULE] ...`
 
 * **lptail** - odootail with colored output \
-usage: `lptail`
+usage: `lptail [OPTIONS]`
+```
+OPTIONS:
+-r, --restart: like odoorestart; odootail
+-g, --grep: like odootail | grep ~
+```
 
 * **lpaddons** - GUI tool for adding and removing projects from your $addons_path \
 usage: `lpaddons [OPTIONS] ...`
