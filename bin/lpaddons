@@ -103,7 +103,7 @@ done
 #
 
 # >>> CREATE DIALOG
-dialog --title "Select projects to include in addons_path" \
+sudo dialog --title "Select projects to include in addons_path" \
        --checklist "Select the modules you want to include in addons_path by marking them with '*' (press spacebar)" \
        40 60 30 \
        $MENUOPTS \
