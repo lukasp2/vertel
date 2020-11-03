@@ -3,9 +3,9 @@ Extended odootools and additional tools for development at Vertel
 
 ## Installation
 ```
-git clone https://github.com/lukasp2/vertel.git
-mv vertel/bin vertel/resources ~/
-rm -rf vertel/
+git clone https://github.com/lukasp2/vertel.git ~/vertel
+mv ~/vertel/bin ~/vertel/resources ~/
+rm -rf ~/vertel/
 ```
 \
 *... and make sure ~/bin is in $PATH, otherwise run*
