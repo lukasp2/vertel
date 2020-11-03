@@ -37,7 +37,7 @@ OPTIONS:
 
 ## Additionals
 * **lpps1** - a PS1 git branch indicator function for ~/.bash_aliases \
-usage: `lpps1`   *... or copy-paste the function and function call to ~/.bash_aliases to always use that setting*
+usage: `lpps1`   *... or copy-paste the function and function call to ~/.bash_aliases*
 
 ### upcomming
 * **lpupdm** - odooupdm with input validation (checks if db and modules exist) and whitespace support \
@@ -50,6 +50,3 @@ usage: `lpsyncall [DB] [MODULE] ...`
 usage: `lpport --from=[ODOOVERSION] --to=[ODOOVERSION]`
 
 * PATCH: **lpfind** - specify a known field that exists in the module (with grep -Rins)
-
-* PATCH: **lptail** - build in grep: lptail -g "~" 
-
