@@ -21,6 +21,7 @@ LONGOPTS=all,customize,clear,print
 if [[ ${PIPESTATUS[0]} -ne 0 ]]; then
     exit 2
 fi
+
 # read getopt’s output this way to handle the quoting right:
 eval set -- "$PARSED"
 
@@ -116,17 +117,15 @@ if [[ $c == y ]]; then
     exitcode=$?;
     exec 3>&-;
 
-    # if dialog is Cancelled
+    # if dialog box is cancelled
     if [[ $exitcode != 0 ]]; then
 	exit 0
     fi
     #
 
-    # >>> PARSE OUTPUT OF DIALOG
-    # The output is in lpaddons_output.txt and consists of project marked to be included in addons_path.
+    # >>> CREATE NEW addons_path
     read -ra INCLUDEODOOADDONSARR <<< "$res"
 
-    # >>> CREATE NEW addons_path
     addons_path=""
     for addon in "${INCLUDEODOOADDONSARR[@]}"; do
 	addons_path+="/usr/share/${addon},"
