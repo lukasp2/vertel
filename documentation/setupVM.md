@@ -29,8 +29,6 @@ odoosetperm
 odoogitpull
 ```
 
-* add IP as host in /etc/hosts on local system
-
 ## on local system
 * set hostname for new system in /etc/hosts
 ```
