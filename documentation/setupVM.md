@@ -1,4 +1,4 @@
-## On local system
+## on local system
 * copy .img file (from harddrive)
 ```
 sudo cp /media/$USER/Unnamed/XXX /var/lib/libvirt/images/
