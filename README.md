@@ -52,4 +52,7 @@ usage: `lpport --from=[ODOOVERSION] --to=[ODOOVERSION]`
 * **lpbranches** - lists checked out branches in all odoo projects \
 usage: `lpbranches`
 
+* **lpsetperms** - odoosetperms with support for individual projects \
+usage: `lpsetperms [PROJECT]`
+
 * PATCH: **lpfind** - specify a known field that exists in the module (with grep -Rins)
