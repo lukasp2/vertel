@@ -32,6 +32,8 @@ sudo chmod 775 /usr/share/OCB/* -R
 odoogitpull
 ```
 
+* install module dn_webshop
+
 ## on local system
 * set hostname for new system in /etc/hosts
 ```
