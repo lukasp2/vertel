@@ -18,7 +18,9 @@ su pohluk
 ```
 
 * copy this to github and gitlab
-```ssh-keygen```
+```
+ssh-keygen
+```
 
 * setup odoo environment
 ```
