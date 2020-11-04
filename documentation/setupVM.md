@@ -4,10 +4,11 @@
 sudo cp /media/$USER/Unnamed/XXX /var/lib/libvirt/images/
 ```
 
-* login \ 
-odoo123 \
-odoo123
-
+* login to remote host
+```
+username: odoo123
+password: odoo123
+```
 ## on new VM
 * create user
 ```
