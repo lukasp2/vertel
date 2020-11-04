@@ -1,28 +1,39 @@
-# copy .img file
+## On local system
+* copy .img file (from harddrive)
 ```
-sudo cp /media/$USER/Unnamed/Odoo10.qcow2 /var/lib/libvirt/images/
+sudo cp /media/$USER/Unnamed/XXX /var/lib/libvirt/images/
 ```
 
-# login
-odoo123
+* login \ 
+odoo123 \
 odoo123
 
-# on new VM
+## on new VM
+* create user
 ```
 sudo useradd -d /home/pohluk -m -G odoo,sudo -s /bin/bash pohluk
 sudo passwd pohluk
 su pohluk
 ```
 
-## copy this to github and gitlab
+* copy this to github and gitlab
 ```ssh-keygen```
 
-## add IP as host in /etc/hosts on local system
-```ip a```
+* setup odoo environment
+```
+export ODOOADDONS=`ls -d /usr/share/odoo-* /usr/share/odooext-* 2> /dev/null | grep -v odoo-addons | paste -sd ","`
+odoosetperm
+odoogitpull
+```
 
-# on local system
-## set hostname for new system in /etc/hosts
+* add IP as host in /etc/hosts on local system
+
+## on local system
+* set hostname for new system in /etc/hosts
 ```
 sudo nano /etc/hosts
+```
+* setup ssh keys
+```
 ssh-copy-id pohluk@odoo8
 ```
