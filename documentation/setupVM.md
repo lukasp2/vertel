@@ -17,9 +17,10 @@ sudo passwd pohluk
 su pohluk
 ```
 
-* copy this to github and gitlab
+* copy public ssh key to github and gitlab
 ```
 ssh-keygen
+cat ~/.ssh/id_rsa.pub
 ```
 
 * setup odoo environment
