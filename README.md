@@ -40,7 +40,7 @@ OPTIONS:
 usage: `lpps1`   *... or copy-paste the function and function call to ~/.bash_aliases*
 
 ### upcomming
-* **lpupdm** - odooupdm with input validation (checks if db and modules exist) and whitespace support \
+* **lpupdm** - odooupdm with input validation (checks if db and modules exist), whitespace support and better output \
 usage: `lpupdm [DB] [MODULE] ...`
 
 * **lpsyncall** - odoosyncall with input validation (fatal bug patch) \
