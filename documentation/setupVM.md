@@ -28,12 +28,22 @@ ssh-keygen
 cat ~/.ssh/id_rsa.pub
 ```
 
+* (if not exists) install odootools from https://github.com/vertelab/odootools/
+```
+wget -O- https://raw.githubusercontent.com/vertelab/odootools/[BRANCH]/install | bash
+```
+
+* (if not exists) download odoo projects
+```
+odoogitclone
+```
+
 * setup odoo environment
 ```
 export ODOOADDONS=`ls -d /usr/share/odoo-* /usr/share/odooext-* 2> /dev/null | grep -v odoo-addons | paste -sd ","`
 odoosetperm
 #sudo chown odoo:odoo /usr/share/OCB -R
-#sudo chmod 775 /usr/share/OCB/* -R
+#sudo chmod 775 /usr/share/OCB/ -R
 odoogitpull
 ```
 
