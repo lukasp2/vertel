@@ -33,7 +33,7 @@ OPTIONS:
 usage: `lpps1`   *... or, to set permanently:* \
 `cat ~/resources/lpps1.txt >> ~/.bash_aliases`
 
-### upcomming
+## Upcomming
 * **lpupdm** - odooupdm with input validation (checks if db and modules exist), whitespace support and better output \
 usage: `lpupdm [DB] [MODULE] ...`
 
