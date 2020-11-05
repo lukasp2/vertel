@@ -40,9 +40,6 @@ usage: `lpupdm [DB] [MODULE] ...`
 * **lpsyncall** - odoosyncall with input validation (fatal bug patch) \
 usage: `lpsyncall [DB] [MODULE] ...`
 
-* **lpport** - attempt to port codebase from one odoo version to another \
-usage: `lpport --from=[ODOOVERSION] --to=[ODOOVERSION]`
-
 * **lpbranches** - lists checked out branches in all odoo projects \
 usage: `lpbranches`
 
