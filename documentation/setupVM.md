@@ -38,8 +38,6 @@ wget -O- https://raw.githubusercontent.com/vertelab/odootools/[BRANCH]/install |
 odoogitclone [PROJ1,PROJ2, ...,PROJX]
 ```
 
-* (if not exists) create user 'odoo' on system
-
 * setup odoo environment
 ```
 export ODOOADDONS=`ls -d /usr/share/odoo-* /usr/share/odooext-* 2> /dev/null | grep -v odoo-addons | paste -sd ","`
