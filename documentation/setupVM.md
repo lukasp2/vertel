@@ -4,10 +4,10 @@
 sudo cp /media/$USER/Unnamed/XXX /var/lib/libvirt/images/
 ```
 
-* setup VM in Virtual Machine Manager
+* setup VM in Virtual Machine Manager, start VM
 
 ## on new VM
-* start VM, login, and create user
+* login, and create user
 ```
 sudo useradd -d /home/pohluk -m -G odoo,sudo -s /bin/bash pohluk
 sudo passwd pohluk
@@ -19,7 +19,7 @@ su pohluk
 ip a
 ```
 
-## on local system
+## on local system and local SSH-ed to VM
 * SSH to VM
 
 * copy public SSH key to github and gitlab
@@ -35,8 +35,10 @@ wget -O- https://raw.githubusercontent.com/vertelab/odootools/[BRANCH]/install |
 
 * (if not exists) download odoo projects
 ```
-odoogitclone
+odoogitclone [PROJ1,PROJ2, ...,PROJX]
 ```
+
+* make sure the user 'odoo' exists on system
 
 * setup odoo environment
 ```
