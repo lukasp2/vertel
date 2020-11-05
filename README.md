@@ -38,7 +38,7 @@ OPTIONS:
 ## Additionals
 * **lpps1** - a PS1 git branch indicator function for ~/.bash_aliases \
 usage: `lpps1`   *... or, to set permanently:* \
-`echo ~/resources/lpps1.txt >> ~/.bash_aliases`
+`cat ~/resources/lpps1.txt >> ~/.bash_aliases`
 
 ### upcomming
 * **lpupdm** - odooupdm with input validation (checks if db and modules exist), whitespace support and better output \
