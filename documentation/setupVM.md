@@ -42,8 +42,6 @@ odoogitclone
 ```
 export ODOOADDONS=`ls -d /usr/share/odoo-* /usr/share/odooext-* 2> /dev/null | grep -v odoo-addons | paste -sd ","`
 odoosetperm
-#sudo chown odoo:odoo /usr/share/OCB -R
-#sudo chmod 775 /usr/share/OCB/ -R
 odoogitpull
 ```
 
