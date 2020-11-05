@@ -37,7 +37,7 @@ OPTIONS:
 
 ## Additionals
 * **lpps1** - a PS1 git branch indicator function for ~/.bash_aliases \
-usage: `lpps1`   *... or copy-paste the function and function call to ~/.bash_aliases*
+usage: `lpps1`   *... or copy-paste resources/lpps1.txt to ~/.bash_aliases*
 
 ### upcomming
 * **lpupdm** - odooupdm with input validation (checks if db and modules exist), whitespace support and better output \
