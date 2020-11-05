@@ -28,7 +28,7 @@ OPTIONS:
 -p, --print: print current addons_path
 ```
 
-## Additionals
+## Extra
 * **lpps1** - a PS1 git branch indicator function for ~/.bash_aliases \
 usage: `lpps1`   *... or, to set permanently:* \
 `cat ~/resources/lpps1.txt >> ~/.bash_aliases`
