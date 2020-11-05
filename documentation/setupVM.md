@@ -4,20 +4,25 @@
 sudo cp /media/$USER/Unnamed/XXX /var/lib/libvirt/images/
 ```
 
-* login to remote host
-```
-username: odoo123
-password: odoo123
-```
+* setup VM in Virtual Machine Manager
+
 ## on new VM
-* create user
+* start VM, login, and create user
 ```
 sudo useradd -d /home/pohluk -m -G odoo,sudo -s /bin/bash pohluk
 sudo passwd pohluk
 su pohluk
 ```
 
-* copy public ssh key to github and gitlab
+* print IP-address for SSH-ing in next step
+```
+ip a
+```
+
+## on local system
+* SSH to VM
+
+* copy public SSH key to github and gitlab
 ```
 ssh-keygen
 cat ~/.ssh/id_rsa.pub
@@ -27,12 +32,10 @@ cat ~/.ssh/id_rsa.pub
 ```
 export ODOOADDONS=`ls -d /usr/share/odoo-* /usr/share/odooext-* 2> /dev/null | grep -v odoo-addons | paste -sd ","`
 odoosetperm
-sudo chown odoo:odoo /usr/share/OCB -R
-sudo chmod 775 /usr/share/OCB/* -R
+#sudo chown odoo:odoo /usr/share/OCB -R
+#sudo chmod 775 /usr/share/OCB/* -R
 odoogitpull
 ```
-
-* install module dn_webshop
 
 ## on local system
 * set hostname for new system in /etc/hosts
