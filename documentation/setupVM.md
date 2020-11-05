@@ -38,7 +38,7 @@ wget -O- https://raw.githubusercontent.com/vertelab/odootools/[BRANCH]/install |
 odoogitclone [PROJ1,PROJ2, ...,PROJX]
 ```
 
-* make sure the user 'odoo' exists on system
+* (if not exists) create user 'odoo' on system
 
 * setup odoo environment
 ```
