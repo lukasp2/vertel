@@ -1,12 +1,12 @@
 # Vertel
-Extended odootools and additional tools for development at Vertel
+Additional tools for development at Vertel
 
 ## Installation
 ```
 wget -O- https://raw.githubusercontent.com/lukasp2/vertel/main/install | bash
 ```
 
-## Extended odootools
+## Tools
 * **lpfind** - finds a module and lists inheritances in /usr/share \
 usage: `lpfind [MODULE] ...`
 
