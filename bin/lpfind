@@ -8,7 +8,7 @@ NC='\033[0m'        # Text Reset
 Yellow='\033[0;33m' # Yellow
 
 LOC=$(pwd); cd /
-ODOODIR="/usr/share"
+ODOODIR="/usr/share/"
 SEARCH="$1"
 
 if (( $# != 1 )); then
@@ -18,12 +18,11 @@ fi
 
 echo -e "SEARCHING FOR\t\t$SEARCH"
 echo -e "IN DIRECTORY\t\t$ODOODIR"
-#echo -e "RUNNING\t\t\tgrep -Rns inherit.\?=.\?\(\\\"\|'\)$SEARCH\(\\\"\|'\) $ODOODIR --include=*py"
 
 echo -e "\n${Yellow}ORIGIN${NC}"
-grep -Rns " _name.\?=.\?\(\\\"\|'\)$SEARCH\(\\\"\|'\)" $ODOODIR --include=*py
+grep -Rns --include=*py " _name.\?=.\?\(\\\"\|'\)$SEARCH\(\\\"\|'\)" $ODOODIR
 echo -e "\n${Yellow}INHERITANCES${NC}"
-grep -Rns " _inherit.\?=.\?\(\\\"\|'\)$SEARCH\(\\\"\|'\)" $ODOODIR --include=*py
+grep -Rns --include=*py " _inherit.\?=.\?\(\\\"\|'\)$SEARCH\(\\\"\|'\)" $ODOODIR 
 
 cd $LOC
 
