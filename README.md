@@ -47,7 +47,7 @@ usage: `lpsyncall [DB] [MODULE] ...`
 usage: `lpbranches`
 
 * **lpsetperm** - odoosetperm with support for individual projects \
-usage: `lpsetperm [PROJECT] ...`
+usage: `lpsetperm [-p PROJECT] ...`
 
 * PATCH: **lpfind** - more versatile searching. implements grep -Rns [OPTIONS] --include=*py \
 (ParseError's and ProgrammingError's output is class_name.field_name, so search for "class myClass and grab first occurence of field_name after that point") \
