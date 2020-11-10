@@ -28,6 +28,9 @@ OPTIONS:
 -p, --print: print current addons_path
 ```
 
+* **lpgitpull** - more aggresive odoogitpull, runs `git reset --hard` and `git pull` for each project
+usage: `lpgitpull`
+
 ## Extra
 * **lpps1** - a PS1 git branch indicator function for ~/.bash_aliases \
 usage: `lpps1`   *... or, to set permanently:* \
@@ -57,8 +60,7 @@ OPTIONS:
 ```
 example: `lpfind -c class_name -f field_name`
 
-* **lpgitpull** - checkout . && git pull
-usage: `lpgitpull`
+
 
 
 
