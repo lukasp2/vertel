@@ -48,7 +48,17 @@ usage: `lpsetperm [PROJECT] ...`
 
 * PATCH: **lpfind** - specify a known field that exists in the module (with grep -Rins)
 (ParseError's and ProgrammingError's output is class_name.field_name, so search for "class myClass and grab first occurence of field_name after that point")
+usage: `lpfind [OPTIONS] ...`
+```
+OPTIONS:
+-n, --name: search module name (default)
+-f, --field: search module field
+-c, --class: search class
+```
+example: `lpfind -c class_name -f field_name`
 
+* **lpgitpull** - checkout . && git pull
+usage: `lpgitpull`
 
 
 
