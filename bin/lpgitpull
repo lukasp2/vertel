@@ -1,0 +1,16 @@
+#!/bin/bash
+
+[ -f /etc/odoo/odoo.tools ] && . /etc/odoo/odoo.tools
+
+if [ ! -z "$ODOOADDONS" ]; then
+	CWD=$(pwd)'
+    for p in ${ODOOADDONS//,/ }; do
+      cd $p
+      echo -n $p " "
+      git reset --hard
+      git pull 2> ~/odoogitpull.err
+    done
+    cat ~/odoogitpull.err
+	rm ~/odoogitpull.err
+	cd $CWD
+fi
