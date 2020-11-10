@@ -13,3 +13,6 @@ if [ ! -z "$ODOOADDONS" ]; then
     cat ~/odoogitpull.err
     cd $CWD
 fi
+
+# printing suggestion for modules to update:
+grep "_" ~/odoogitpull.err | grep ".xml" | grep -v "create mode" | cut -d "/" -f 1 | sort | uniq
