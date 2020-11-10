@@ -46,7 +46,7 @@ usage: `lpbranches`
 * **lpsetperm** - odoosetperm with support for individual projects \
 usage: `lpsetperm [PROJECT] ...`
 
-* PATCH: **lpfind** - specify a known field that exists in the module (with grep -Rins)
+* PATCH: **lpfind** - more versatile searching. implements grep -Rns [OPTIONS] --include=*py \
 (ParseError's and ProgrammingError's output is class_name.field_name, so search for "class myClass and grab first occurence of field_name after that point") \
 usage: `lpfind [OPTIONS] ...`
 ```
