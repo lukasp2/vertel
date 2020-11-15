@@ -14,6 +14,7 @@ if [ ! -z "$ODOOADDONS" ]; then
     cd $CWD
 fi
 
-# TODO: check if all of these are even installed!!
-# [BETA:] (and TODO) printing suggestion for modules to update:
+# TODO: check if all of these are even installed!
+
+echo "[BETA] suggestion for modules to update:"
 grep "_" ~/odoogitpull.err | grep ".xml\|.py" | grep -v "create mode" | cut -d "/" -f 1 | sort | uniq
