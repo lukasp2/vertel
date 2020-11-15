@@ -8,7 +8,7 @@ wget -O- https://raw.githubusercontent.com/lukasp2/vertel/main/install | bash
 
 ## Tools
 * **lpfind** - finds a model and lists inheritances in /usr/share \
-usage: `lpfind [MODULE] ...`
+usage: `lpfind [MODEL]`
 
 * **lptail** - odootail with colored output \
 usage: `lptail [OPTIONS]`
