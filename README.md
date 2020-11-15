@@ -49,14 +49,13 @@ usage: `lpbranches`
 * **lpsetperm** - odoosetperm with support for individual projects \
 usage: `lpsetperm [-p PROJECT] ...`
 
-* PATCH: **lpfind** - more versatile searching. implements grep -Rns [OPTIONS] --include=*py \
-(ParseError's and ProgrammingError's output is class_name.field_name, so search for "class myClass and grab first occurence of field_name after that point") \
+* PATCH: **lpfind** - easy module searching \
 usage: `lpfind [OPTIONS] ...`
 ```
 OPTIONS:
--n: search model name (default)
--f: search model field
--c: search class
+-n MODEL_NAME: lists MODEL_NAME's origin (_name = ...) and inheritances (_inherit = ...) (default)
+-c CLASS_NAME: searches for classes with name CLASS_NAME
+-f FIELD_NAME: searches for classes with field FIELD_NAME
 ```
 example: `lpfind -c class_name -f field_name`
 
