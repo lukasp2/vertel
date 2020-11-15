@@ -4,46 +4,54 @@ n=y
 while getopts c:f: option; do
     n=n
     case "${option}" in
-        c) CLASSNAME=${OPTARG} ;;
-        f) FIELDNAME=${OPTARG} ;;
+        c) CLASSNAME=${OPTARG}
+           c=y
+           ;;
+        f) FIELDNAME=${OPTARG}
+           f=y
+           ;;
     esac
 done
 
 LOC=$(pwd); cd /
-ODOODIR="/usr/share/" # TODO: *odoo* | OCB
+ODOODIR="/home/lukas/Desktop/odoo-website-dermanord" # TODO: *odoo* | OCB
 
 # >>> -n: SEARCH MODULE NAME (default)
 if [[ $n == y ]]; then
     SEARCH="$1"
-    echo -e "SEARCHING FOR\t\t$SEARCH"
-    echo -e "IN DIRECTORY\t\t$ODOODIR"
+    echo -e "MODEL\t\t$SEARCH"
 
     echo -e "\nORIGIN"
     grep -Rns --include=*py " _name.\?=.\?\(\\\"\|'\)$SEARCH\(\\\"\|'\)" $ODOODIR
     echo -e "\nINHERITANCES"
     grep -Rns --include=*py " _inherit.\?=.\?\(\\\"\|'\)$SEARCH\(\\\"\|'\)" $ODOODIR
-    exit 0
-fi
 
 # >>> -c: SEARCH CLASS NAME
-if [[ $c == y && $f == y ]]; then
-    matches_class=$(grep -Rns --include=*py " class $CLASSNAME\(" $ODOODIR)
-    # for each file in this list, grep after all "class"-instances and save the line number
-    # of the first class after the match.
-    # This way we can know if a field is in or outside of the class
+elif [[ $c == y && $f == y ]]; then
+    matches_class=$(grep -Rns --include=*py "class $CLASSNAME\(.*\)" $ODOODIR)
+    matches_field=$(grep -Rns --include=*py " $FIELDNAME.\?=.\?fields\." $ODOODIR)
 
-    # when inside the above for loop, grep after the field:
-    matches_field=$(grep -Rns --include=*py " $FIELDNAME.\?=.\?" $ODOODIR)
-fi
+    matches_class1=$(echo "$matches_class" | cut -d ":" -f1 | sort | uniq)
+    matches_field1=$(echo "$matches_field" | cut -d ":" -f1 | sort | uniq)
+
+    #for match in matches_class1:
+    #   if match not in matches_field (or the line number of matches_field is < that of entry in matches_class):
+    #       remove entry from matches_class1
+    #print matches_class
+
+    diff <( printf '%s\n' "${matches_class1[@]}" ) <( printf '%s\n' "${matches_field1[@]}" )
+
+    #echo "matches class: $matches_class1"
+    #echo "matches field: $matches_field1"
 
 # >>> -c: SEARCH CLASS NAME
 elif [[ $c == y ]]; then
-    grep -Rns --include=*py " class $CLASSNAME\(" $ODOODIR
-fi
+    grep -Rns --include=*py " class $CLASSNAME\(.*\)" $ODOODIR
 
 # >>> -f: SEARCH CLASS NAME
 elif [[ $f == y ]]; then
     grep -Rns --include=*py " $FIELDNAME.\?=.\?" $ODOODIR
+
 fi
 
 cd $LOC
