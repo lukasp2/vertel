@@ -54,9 +54,9 @@ usage: `lpsetperm [-p PROJECT] ...`
 usage: `lpfind [OPTIONS] ...`
 ```
 OPTIONS:
--n, --name: search model name (default)
--f, --field: search model field
--c, --class: search class
+-n: search model name (default)
+-f: search model field
+-c: search class
 ```
 example: `lpfind -c class_name -f field_name`
 
