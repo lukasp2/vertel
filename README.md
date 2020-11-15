@@ -7,7 +7,7 @@ wget -O- https://raw.githubusercontent.com/lukasp2/vertel/main/install | bash
 ```
 
 ## Tools
-* **lpfind** - finds a module and lists inheritances in /usr/share \
+* **lpfind** - finds a model and lists inheritances in /usr/share \
 usage: `lpfind [MODULE] ...`
 
 * **lptail** - odootail with colored output \
@@ -54,13 +54,14 @@ usage: `lpsetperm [-p PROJECT] ...`
 usage: `lpfind [OPTIONS] ...`
 ```
 OPTIONS:
--n, --name: search module name (default)
--f, --field: search module field
+-n, --name: search model name (default)
+-f, --field: search model field
 -c, --class: search class
 ```
 example: `lpfind -c class_name -f field_name`
 
-
+* **lpdeptree** - print a module dependency tree with `MODULE` as root \
+usage: `lpdeptree [MODULE]`
 
 
 
