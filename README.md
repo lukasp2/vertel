@@ -54,8 +54,8 @@ usage: `lpfind [OPTIONS] ...`
 ```
 OPTIONS:
 -n MODEL_NAME: lists MODEL_NAME's origin (_name = ...) and inheritances (_inherit = ...) (default)
--c CLASS_NAME: searches for classes with name CLASS_NAME
--f FIELD_NAME: searches for classes with field FIELD_NAME
+-c CLASS_NAME: searches for models with class name = CLASS_NAME
+-f FIELD_NAME: searches for models with field name = FIELD_NAME
 ```
 example: `lpfind -c class_name -f field_name`
 
