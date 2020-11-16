@@ -4,4 +4,4 @@ git clone https://github.com/lukasp2/vertel.git ~/vertel
 mv ~/vertel/bin ~/vertel/resources ~/
 rm -rf ~/vertel/
 
-[ -z $(echo $PATH | grep -o "/home/$USER/.local/bin:") ] && export PATH="/home/$USER/bin:$PATH"
+[ -z $(echo $PATH | grep -o "/home/$USER/bin:") ] && export PATH="/home/$USER/bin:$PATH"
