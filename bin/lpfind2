@@ -14,7 +14,7 @@ while getopts c:f: option; do
 done
 
 LOC=$(pwd); cd /
-ODOODIR="/home/lukas/Desktop/odoo-website-dermanord" # TODO: *odoo* | OCB
+ODOODIR="/usr/share" # TODO: *odoo* | OCB
 
 # >>> -n: SEARCH MODULE NAME (default)
 if [[ $n == y ]]; then
