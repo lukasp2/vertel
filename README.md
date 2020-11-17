@@ -56,12 +56,12 @@ OPTIONS:
 -n MODEL_NAME: lists MODEL_NAME's origin (_name = ...) and inheritances (_inherit = ...) (default)
 -c CLASS_NAME: searches for models with class name = CLASS_NAME
 -f FIELD_NAME: searches for models with field name = FIELD_NAME
-(-m: only list module)
-(-x: search xml field name)
+(-x: FIELD_NAME search xml field name)
+(-m: only list modules, not complete path | cut -d "/" -fX | sort | uniq)
 ```
 example: `lpfind -c class_name -f field_name`
 
-* PATCH: **install** - export PATH in install does not survive restart \
+* PATCH: **install** - export PATH in install does not work \
 
 * **lpdeptree** - print a module dependency tree with `MODULE` as root \
 usage: `lpdeptree [MODULE]`
