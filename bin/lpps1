@@ -51,10 +51,10 @@ while true; do
 done
 
 if [[ $p == y ]]; then
-    cat $HOME/lpaddons/resources/lpps1.txt >> $HOME/.bash_aliases
     color_my_prompt
-    echo "sent new PS1 variable to $HOME/.bash_aliases!"
+    cat $HOME/lpaddons/resources/lpps1.txt >> $HOME/.bash_aliases
+    echo "new PS1 variable set and sent to $HOME/.bash_aliases!"
 elif [[ $t == y ]]; then
-    #color_my_prompt
+    color_my_prompt
     echo "new PS1 set!"
 fi
