@@ -7,6 +7,8 @@ fi
 git clone https://github.com/lukasp2/vertel.git ~/lptools
 
 # if ~/.bash_aliases does not exist or PATH is not set to ~/lptools/bin:$PATH therein.
-if [ ! -f "$HOME/.bash_aliases" ] || [ -z $(grep -o "PATH=$HOME/lptools/bin:$PATH" $HOME/.bash_aliases) ]; then
+if [ ! -f "$HOME/.bash_aliases" ] || [ -z $(grep -o "$HOME/lptools/bin" $HOME/.bash_aliases) ]; then
     echo "PATH=$HOME/lptools/bin:$PATH" >> $HOME/.bash_aliases
 fi
+
+source ~/.bash_aliases
