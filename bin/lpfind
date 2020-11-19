@@ -1,24 +1,58 @@
 #!/bin/bash
 
-NC='\033[0m'        # Text Reset
-Yellow='\033[0;33m' # Yellow
+n=y
+while getopts c:f:n: option; do
+    n=n
+    case "${option}" in
+        n) MODELNAME=${OPTARG}
+           n=y
+           ;;
+        c) CLASSNAME=${OPTARG}
+           c=y
+           ;;
+        f) FIELDNAME=${OPTARG}
+           f=y
+           ;;
+    esac
+done
 
 LOC=$(pwd); cd /
-ODOODIR="/usr/share/" # TODO: *odoo* | OCB
-SEARCH="$1"
+ODOODIR="/usr/share" # TODO: *odoo* | OCB
 
-if (( $# != 1 )); then
-    echo "usage: ./finder [OPTIONS] [module name] ..."
-    exit
+# >>> -n: SEARCH MODULE NAME (default)
+if [[ $n == y ]]; then
+    echo -e "MODEL\t\t$MODELNAME"
+    echo -e "\nORIGIN"
+    grep -Rns --include=*py " _name.\?=.\?\(\\\"\|'\)$MODELNAME\(\\\"\|'\)" $ODOODIR
+    echo -e "\nINHERITANCES"
+    grep -Rns --include=*py " _inherit.\?=.\?\(\\\"\|'\)$MODELNAME\(\\\"\|'\)" $ODOODIR
+
+# >>> -c: SEARCH CLASS NAME
+elif [[ $c == y && $f == y ]]; then
+    matches_class=$(grep -Rns --include=*py "class $CLASSNAME\(.*\)" $ODOODIR)
+    matches_field=$(grep -Rns --include=*py " $FIELDNAME.\?=.\?fields\." $ODOODIR)
+
+    matches_class1=$(echo "$matches_class" | cut -d ":" -f1 | sort | uniq)
+    matches_field1=$(echo "$matches_field" | cut -d ":" -f1 | sort | uniq)
+
+    #for match in matches_class1:
+    #   if match not in matches_field (or the line number of matches_field is < that of entry in matches_class):
+    #       remove entry from matches_class1
+    #print matches_class
+
+    diff <( printf '%s\n' "${matches_class1[@]}" ) <( printf '%s\n' "${matches_field1[@]}" )
+
+    #echo "matches class: $matches_class1"
+    #echo "matches field: $matches_field1"
+
+# >>> -c: SEARCH CLASS NAME
+elif [[ $c == y ]]; then
+    grep -Rns --include=*py " class $CLASSNAME\(.*\)" $ODOODIR
+
+# >>> -f: SEARCH CLASS NAME
+elif [[ $f == y ]]; then
+    grep -Rns --include=*py " $FIELDNAME.\?=.\?" $ODOODIR
+
 fi
 
-echo -e "SEARCHING FOR\t\t$SEARCH"
-echo -e "IN DIRECTORY\t\t$ODOODIR"
-
-echo -e "\n${Yellow}ORIGIN${NC}"
-grep -Rns --include=*py " _name.\?=.\?\(\\\"\|'\)$SEARCH\(\\\"\|'\)" $ODOODIR
-echo -e "\n${Yellow}INHERITANCES${NC}"
-grep -Rns --include=*py " _inherit.\?=.\?\(\\\"\|'\)$SEARCH\(\\\"\|'\)" $ODOODIR 
-
 cd $LOC
-
