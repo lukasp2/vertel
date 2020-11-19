@@ -39,7 +39,7 @@ usage: `lpgitpull`
 usage: `lpps1 [OPTIONS]`
 ```
 OPTIONS:
--t, --temporary: set PS1 environment variable in this shell only
+-t, --temporary: set PS1 environment variable in this shell only (default)
 -p, --permanent: set PS1 environment variable in ~/.bash_aliases
 ```
 
