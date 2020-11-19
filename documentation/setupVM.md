@@ -53,5 +53,5 @@ sudo nano /etc/hosts
 ```
 * setup ssh keys
 ```
-ssh-copy-id pohluk@odoo8
+ssh-copy-id $USER@odoo8
 ```
