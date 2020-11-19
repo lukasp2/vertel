@@ -64,8 +64,6 @@ OPTIONS:
 ```
 example: `lpfind -c class_name -f field_name`
 
-* PATCH: **install** - export PATH in install does not work \
-
 * **lpdeptree** - print a module dependency tree with `MODULE` as root \
 usage: `lpdeptree [MODULE]`
 
