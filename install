@@ -1,5 +1,9 @@
 #!/bin/bash
 
+if [ -f $HOME/lptools ]; then
+    rm -rf $HOME/lptools
+fi
+
 git clone https://github.com/lukasp2/vertel.git ~/lptools
 
 # if ~/.bash_aliases does not exist or PATH is not set to ~/lptools/bin:$PATH therein.
