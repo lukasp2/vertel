@@ -11,4 +11,50 @@ function color_my_prompt {
 
     export PS1="$__user_and_host $__cur_location $__git_branch_color$__git_branch$__prompt_tail$__last_color$__git_dirty "
 }
-color_my_prompt
+
+! getopt --test > /dev/null 
+if [[ ${PIPESTATUS[0]} -ne 4 ]]; then
+    echo '`getopt --test` failed in this environment.'
+    exit 1
+fi
+
+OPTIONS=tp
+LONGOPTS=temporary,permanent
+
+! PARSED=$(getopt --options=$OPTIONS --longoptions=$LONGOPTS --name "$0" -- "$@")
+if [[ ${PIPESTATUS[0]} -ne 0 ]]; then
+    exit 2
+fi
+
+eval set -- "$PARSED"
+
+t=y; p=n;
+while true; do
+    case "$1" in
+	-t|--temporary)
+	    t=y
+            shift
+            ;;
+	-p|--permantent)
+	    p=y
+            shift
+            ;;
+        --)
+            shift
+            break
+            ;;
+        *)
+            echo "Programming error"
+            exit 3
+            ;;
+    esac
+done
+
+if [[ $p == y ]]; then
+    cat $HOME/lpaddons/resources/lpps1.txt >> $HOME/.bash_aliases
+    color_my_prompt
+    echo "sent new PS1 variable to $HOME/.bash_aliases!"
+elif [[ $t == y ]]; then
+    #color_my_prompt
+    echo "new PS1 set!"
+fi
