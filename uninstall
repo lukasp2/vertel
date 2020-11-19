@@ -1,6 +1,11 @@
 #!/bin/bash
 
-# if PATH is set to ~/lptools/bin:$PATH in ~/.bash_aliases, remove it
+# if ~/lptools/bin is in PATH, remove it
+if [ -z $(echo $PATH | grep -o $HOME/lptools/bin) ]; then
+    PATH=$(sed "s+$HOME/lptools/bin:++g" <(echo $PATH))
+fi
+
+# if ~/lptools/bin is in PATH in bash_aliases, remove it
 if [ ! -z $(grep -o "PATH=$HOME/lptools/bin:$PATH" $HOME/.bash_aliases) ]; then
     sed -i "s+PATH=$HOME/lptools/bin:$PATH++g" $HOME/.bash_aliases
 fi
