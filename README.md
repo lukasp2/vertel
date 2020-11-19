@@ -17,8 +17,8 @@ usage: `lpfind [MODEL]`
 usage: `lptail [OPTIONS]`
 ```
 OPTIONS:
--r, --restart: odoorestart; lptail
--g, --grep: odootail | grep "~"
+-r, --restart: odoorestart; echo "restart done"; lptail
+-g, --grep: pipe into grep "~"
 ```
 
 * **lpaddons** - GUI tool for adding and removing projects from your $addons_path \
@@ -27,7 +27,7 @@ usage: `lpaddons [OPTIONS] ...`
 OPTIONS:
 -a, --all: add all addons (default)
 -r, --reset: clear all addons
--c, --customize: customize addons_path
+-c, --customize: customize addons_path via GUI
 -p, --print: print current addons_path
 ```
 
