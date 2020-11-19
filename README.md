@@ -1,12 +1,10 @@
 # Vertel
 Additional tools for development at Vertel
 
-## Install
+## Install and uninstall
 ```
 wget -O- https://raw.githubusercontent.com/lukasp2/vertel/main/install | bash
 ```
-
-## Uninstall
 ```
 wget -O- https://raw.githubusercontent.com/lukasp2/vertel/main/uninstall | bash
 ```
