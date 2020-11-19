@@ -36,8 +36,12 @@ usage: `lpgitpull`
 
 ## Extra
 * **lpps1** - a PS1 git branch indicator function for ~/.bash_aliases \
-usage: `lpps1`   *... or, to set permanently:* \
-`cat ~/resources/lpps1.txt >> ~/.bash_aliases`
+usage: `lpps1 [OPTIONS]`
+```
+OPTIONS:
+-t, --temporary: set PS1 environment variable in this shell only
+-p, --permanent: set PS1 environment variable in ~/.bash_aliases
+```
 
 ## Upcomming
 * **lpupdm** - odooupdm with input validation (checks if db and modules exist), whitespace support and better output \
