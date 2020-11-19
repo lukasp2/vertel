@@ -10,4 +10,4 @@ if [ ! -f "$HOME/.bash_aliases" ] || [ -z $(grep -o "$HOME/lptools/bin" $HOME/.b
     echo "PATH=$HOME/lptools/bin:$PATH" >> $HOME/.bash_aliases
 fi
 
-[ -z $(echo $PATH | grep -o "$HOME/lptools/bin") ] && PATH="$HOME/lptools/bin:$PATH"
+# [ -z $(echo $PATH | grep -o "$HOME/lptools/bin") ] && PATH="$HOME/lptools/bin:$PATH"
