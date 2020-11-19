@@ -11,14 +11,20 @@ wget -O- https://raw.githubusercontent.com/lukasp2/vertel/main/uninstall | bash
 
 ## Tools
 * **lpfind** - finds a model and lists inheritances in /usr/share \
-usage: `lpfind [MODEL]`
+usage: `lpfind [OPTIONS]`
+```
+OPTIONS:
+-n MODEL_NAME: lists MODEL_NAME's origin (_name = ...) and inheritances (_inherit = ...) (default)
+-c CLASS_NAME: searches for models with class name = CLASS_NAME
+-f FIELD_NAME: searches for models with field name = FIELD_NAME
+```
 
 * **lptail** - odootail with colored output \
 usage: `lptail [OPTIONS]`
 ```
 OPTIONS:
 -r, --restart: odoorestart; echo "restart done"; lptail
--g, --grep: pipe into grep "~"
+-g, --grep: pipe output into grep "~"
 ```
 
 * **lpaddons** - GUI tool for adding and removing projects from your $addons_path \
@@ -35,7 +41,7 @@ OPTIONS:
 usage: `lpgitpull`
 
 ## Extra
-* **lpps1** - a PS1 git branch indicator function for ~/.bash_aliases \
+* **lpps1** - a PS1 git branch indicator \
 usage: `lpps1 [OPTIONS]`
 ```
 OPTIONS:
@@ -56,20 +62,13 @@ usage: `lpbranches`
 * **lpsetperm** - odoosetperm with support for individual projects \
 usage: `lpsetperm [-p PROJECT] ...`
 
-* PATCH: **lpfind** - easy module searching \
-usage: `lpfind [OPTIONS] ...`
+* PATCH: **lpfind** - module searching with chained OPTIONS \
+e.g.: `lpfind -c class_name -f field_name`
 ```
-OPTIONS:
--n MODEL_NAME: lists MODEL_NAME's origin (_name = ...) and inheritances (_inherit = ...) (default)
--c CLASS_NAME: searches for models with class name = CLASS_NAME
--f FIELD_NAME: searches for models with field name = FIELD_NAME
+OTHER OPTIONS:
 (-x: FIELD_NAME search xml field name)
 (-m: only list modules, not complete path | cut -d "/" -fX | sort | uniq)
 ```
-example: `lpfind -c class_name -f field_name`
 
 * **lpdeptree** - print a module dependency tree with `MODULE` as root \
 usage: `lpdeptree [MODULE]`
-
-
-
