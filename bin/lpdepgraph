@@ -98,7 +98,7 @@ def print_modules_dep(dic):
             print('\t', vi)
         print()
 
-odoo_dir = '/home/lukas/Desktop/'
+odoo_dir = '/usr/share/'
 
 def main():
     # create an adjacency list in the form:
