@@ -66,7 +66,8 @@ usage: `lpsetperm [-p PROJECT] ...`
 e.g.: `lpfind -c class_name -f field_name`
 ```
 OTHER OPTIONS:
-(-x: FIELD_NAME search xml field name)
+-m [MODULE]: find the modules directory
+(-x [FIELD_NAME]: search xml field name)
 (-m: only list modules, not complete path | cut -d "/" -fX | sort | uniq)
 ```
 
