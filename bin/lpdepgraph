@@ -1,0 +1,112 @@
+#!/usr/bin/env python3
+
+# pip3 requirements: networkx matplotlib
+import networkx as nx
+import matplotlib.pyplot as plt
+
+import os
+import re
+
+def get_list_of_files(odoo_dir):
+    list_of_file = os.listdir(odoo_dir)
+    all_files = list()
+
+    for entry in list_of_file:
+        full_path = os.path.join(odoo_dir, entry)
+
+        if os.path.isdir(full_path):
+            all_files = all_files + get_list_of_files(full_path)
+        else:
+            all_files.append(full_path)
+                
+    return all_files
+
+def get_project_and_module_name(file_path):
+    x = file_path[len(odoo_dir):].split('/')
+
+    if len(x) < 2:
+        return [-1, -1]
+    
+    return [x[0], x[1]]
+
+def get_dependencies(file_path):
+    fo = open(file_path)
+    line = fo.readline()
+
+    while line != '':
+        if re.match("^\s*'depends'.*:.*\[", line):
+            dependency = line
+            while line != '' and line.find("]") == -1:
+                line = fo.readline()
+                dependency += line
+            break
+        line = fo.readline()
+    fo.close()
+
+    dependency = dependency.replace("\n", "").replace(" ", "")
+    dependency = dependency.replace("'", "").replace('"', "")
+    dependency = dependency[dependency.find('[') + 1:dependency.find(']')]
+    dependency = dependency.split(",")
+    dependency = list(filter(lambda x : x != "" and not re.match("^#.*", x), dependency))
+
+    return dependency
+
+def get_manifest_files(odoo_dir):
+    list_of_files = get_list_of_files(odoo_dir)
+
+    manifest_files = list()
+    for file_path in list_of_files:
+        if re.match(".*(__openerp__|__manifest__).py$", file_path):
+            manifest_files.append(file_path)
+
+    return manifest_files
+
+def get_adjacency_list(odoo_dir):
+    manifest_files = get_manifest_files(odoo_dir)
+
+    dic = {}
+    for file_path in manifest_files:
+        project_name, module_name = get_project_and_module_name(file_path)
+
+        if project_name == -1:
+            continue
+     
+        dependencies = get_dependencies(file_path)
+
+        if module_name not in dic:
+            dic[module_name] = []
+            
+        dic[module_name] = dependencies
+
+    return dic
+
+def create_graph(dic):
+    g = nx.DiGraph()
+
+    g.add_nodes_from(dic.keys())
+
+    for node, neighs in dic.items():
+        for neigh in neighs:
+            g.add_edge(node, neigh)
+
+    return g
+
+def print_modules_dep(dic):
+    for k,v in dic.items():
+        print(k)
+        for vi in v:
+            print('\t', vi)
+        print()
+
+odoo_dir = '/home/lukas/Desktop/'
+
+def main():
+    # create an adjacency list in the form:
+    # {'module_name': [module_name_dep1, module_name_dep2, ..., module_name_depX]}
+    dic = get_adjacency_list(odoo_dir)
+
+    g = create_graph(dic)
+
+    print_modules_dep(dic)
+
+    print("dependency cycles: ", list(nx.simple_cycles(g)))
