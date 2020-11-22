@@ -49,6 +49,9 @@ OPTIONS:
 -p, --permanent: set PS1 environment variable in ~/.bash_aliases
 ```
 
+* **lpdepgraph** - lists all dependencies and finds circular dependencies in manifests (requires pip3 networkx, matplotlib) \
+usage: `lpdepgraph`
+
 ## Upcomming
 * **lpupdm** - odooupdm with input validation (checks if db and modules exist), whitespace support and better output \
 usage: `lpupdm [DB] [MODULE] ...`
@@ -71,5 +74,3 @@ OTHER OPTIONS:
 (-m: only list modules, not complete path | cut -d "/" -fX | sort | uniq)
 ```
 
-* **lpdepgraph** - lists dependencies, and finds circular dependencies in manifests (requires pip3 networkx, matplotlib) \
-usage: `lpdepgraph`
