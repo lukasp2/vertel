@@ -17,7 +17,7 @@ while getopts c:f:n: option; do
 done
 
 LOC=$(pwd); cd /
-ODOODIR="/usr/share" # TODO: *odoo* | OCB
+ODOODIR="/usr/share/" # TODO: *odoo* | OCB
 
 # >>> -n: SEARCH MODULE NAME (default)
 if [[ $n == y ]]; then
@@ -27,23 +27,21 @@ if [[ $n == y ]]; then
     echo -e "\nINHERITANCES"
     grep -Rns --include=*py " _inherit.\?=.\?\(\\\"\|'\)$MODELNAME\(\\\"\|'\)" $ODOODIR
 
-# >>> -c: SEARCH CLASS NAME
+# >>> -c: SEARCH CLASS NAME AND FIELD NAME
 elif [[ $c == y && $f == y ]]; then
+    echo "class name: $CLASSNAME"
+    echo "field name: $FIELDNAME"
+    echo ""
+    
     matches_class=$(grep -Rns --include=*py "class $CLASSNAME\(.*\)" $ODOODIR)
     matches_field=$(grep -Rns --include=*py " $FIELDNAME.\?=.\?fields\." $ODOODIR)
 
     matches_class1=$(echo "$matches_class" | cut -d ":" -f1 | sort | uniq)
     matches_field1=$(echo "$matches_field" | cut -d ":" -f1 | sort | uniq)
 
-    #for match in matches_class1:
-    #   if match not in matches_field (or the line number of matches_field is < that of entry in matches_class):
-    #       remove entry from matches_class1
-    #print matches_class
+    total_match=$(comm -12 <( printf '%s\n' "${matches_class1[@]}" ) <( printf '%s\n' "${matches_field1[@]}"))
 
-    diff <( printf '%s\n' "${matches_class1[@]}" ) <( printf '%s\n' "${matches_field1[@]}" )
-
-    #echo "matches class: $matches_class1"
-    #echo "matches field: $matches_field1"
+    echo "$total_match"
 
 # >>> -c: SEARCH CLASS NAME
 elif [[ $c == y ]]; then
