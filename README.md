@@ -71,5 +71,5 @@ OTHER OPTIONS:
 (-m: only list modules, not complete path | cut -d "/" -fX | sort | uniq)
 ```
 
-* **lpdeptree** - print a module dependency tree with `MODULE` as root \
-usage: `lpdeptree [MODULE]`
+* **lpdeptree** - lists dependencies, and finds circular dependencies in manifests (requires pip3 networkx, matplotlib) \
+usage: `lpdeptree`
