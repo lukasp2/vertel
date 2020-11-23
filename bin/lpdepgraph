@@ -9,6 +9,7 @@ import re
 
 def get_list_of_files(odoo_dir):
     list_of_file = os.listdir(odoo_dir)
+    list_of_file = list(filter(lambda x : re.match('odoo*', x), list_of_file))
     all_files = list()
 
     for entry in list_of_file:

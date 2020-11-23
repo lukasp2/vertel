@@ -20,6 +20,8 @@ ip a
 ```
 
 ## on local system and local SSH-ed to VM
+* go to /etc/hosts and add the IP address of your new VM
+
 * SSH to VM
 
 * copy public SSH key to github and gitlab
