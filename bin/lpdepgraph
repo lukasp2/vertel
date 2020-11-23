@@ -7,20 +7,43 @@ import matplotlib.pyplot as plt
 import os
 import re
 
-def get_list_of_files(odoo_dir):
-    list_of_file = os.listdir(odoo_dir)
-    list_of_file = list(filter(lambda x : re.match('odoo*', x), list_of_file))
-    all_files = list()
+# test
+l = list(filter(lambda x : re.match('odoo*', x), os.listdir(odoo_dir)))
+get_list_of_files2(l)
 
-    for entry in list_of_file:
+def get_list_of_files2(list_of_files):
+    all_files = list()
+    for entry in list_of_files:
+        if os.path.isdir(entry):
+            all_files = all_files + get_list_of_files(os.listdir(entry))
+        else:
+            all_files.append(full_path)
+
+    return all_files
+#
+
+def get_list_of_files(odoo_dir):
+    list_of_files = os.listdir(odoo_dir)
+    
+    all_files = list()
+    for entry in list_of_files:
         full_path = os.path.join(odoo_dir, entry)
 
         if os.path.isdir(full_path):
             all_files = all_files + get_list_of_files(full_path)
         else:
             all_files.append(full_path)
-                
+
     return all_files
+
+def get_manifest_files(list_of_files):
+    manifest_files = list()
+    
+    for file_path in list_of_files:
+        if re.match(".*(__openerp__|__manifest__).py$", file_path):
+            manifest_files.append(file_path)
+
+    return manifest_files
 
 def get_project_and_module_name(file_path):
     x = file_path[len(odoo_dir):].split('/')
@@ -52,19 +75,7 @@ def get_dependencies(file_path):
 
     return dependency
 
-def get_manifest_files(odoo_dir):
-    list_of_files = get_list_of_files(odoo_dir)
-
-    manifest_files = list()
-    for file_path in list_of_files:
-        if re.match(".*(__openerp__|__manifest__).py$", file_path):
-            manifest_files.append(file_path)
-
-    return manifest_files
-
-def get_adjacency_list(odoo_dir):
-    manifest_files = get_manifest_files(odoo_dir)
-
+def get_adjacency_list(manifest_files):
     dic = {}
     for file_path in manifest_files:
         project_name, module_name = get_project_and_module_name(file_path)
@@ -98,23 +109,38 @@ def create_graph(dic):
     return g
 
 def print_modules_dep(dic):
-    for k,v in dic.items():
+    for k, v in dic.items():
         print(k)
         for vi in v:
             print('\t', vi)
         print()
 
-odoo_dir = '/usr/share/'
+odoo_dir = '/home/lukas/Desktop/'
 
 def main():
-    # create an adjacency list in the form:
-    # {'module_name': [module_name_dep1, module_name_dep2, ..., module_name_depX]}
-    dic = get_adjacency_list(odoo_dir)
+    # get a list of all files, e.g.:
+    # = [/usr/share/proj1/mod1, /usr/share/proj2/mod2, ..., /usr/share/proj3/mod3]
+    list_of_files = get_list_of_files(odoo_dir)
+
+    print("list_of_files")
+    print(list_of_files)
     
+    # get only the manifest files from that list
+    manifest_files = get_manifest_files(list_of_files)
+
+    print("manifest files")
+    print(manifest_files)
+    
+    # get adjacency list of module dependencies, e.g.:
+    # {'module_name': [module_name_dep1, module_name_dep2, ..., module_name_depX]}
+    dic = get_adjacency_list(manifest_files)
+    
+    print_modules_dep(dic)
+    
+    # construct a graph from the adjacency list
     g = create_graph(dic)
 
-    print_modules_dep(dic)
-
+    # use nx.simple_cycles to find cycles
     print("dependency cycles: ", list(nx.simple_cycles(g)))
 
 main()
