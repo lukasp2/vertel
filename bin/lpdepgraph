@@ -87,7 +87,12 @@ def create_graph(dic):
 
     for node, neighs in dic.items():
         for neigh in neighs:
+            # TODO: add node if not exists
             g.add_edge(node, neigh)
+
+    #plt.figure(1, figsize=(20,20))
+    #nx.draw_circular(g, nodelist=dic.keys(), with_labels=True, node_size=30, font_size=8)
+    #plt.show()
 
     return g
 
@@ -104,9 +109,11 @@ def main():
     # create an adjacency list in the form:
     # {'module_name': [module_name_dep1, module_name_dep2, ..., module_name_depX]}
     dic = get_adjacency_list(odoo_dir)
-
+    
     g = create_graph(dic)
 
     print_modules_dep(dic)
 
     print("dependency cycles: ", list(nx.simple_cycles(g)))
+
+main()
