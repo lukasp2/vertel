@@ -26,7 +26,7 @@ def get_list_of_files2(list_of_files):
 
 def get_list_of_files(odoo_dir):
     list_of_files = os.listdir(odoo_dir)
-    
+
     all_files = list()
     for entry in list_of_files:
         full_path = os.path.join(odoo_dir, entry)
@@ -40,7 +40,7 @@ def get_list_of_files(odoo_dir):
 
 def get_manifest_files(list_of_files):
     manifest_files = list()
-    
+
     for file_path in list_of_files:
         if re.match(".*(__openerp__|__manifest__).py$", file_path):
             manifest_files.append(file_path)
@@ -52,13 +52,14 @@ def get_project_and_module_name(file_path):
 
     if len(x) < 2:
         return [-1, -1]
-    
+
     return [x[0], x[1]]
 
 def get_dependencies(file_path):
     fo = open(file_path)
     line = fo.readline()
 
+    dependency = ""
     while line != '':
         if re.match("^\s*'depends'.*:.*\[", line):
             dependency = line
@@ -84,12 +85,12 @@ def get_adjacency_list(manifest_files):
 
         if project_name == -1:
             continue
-     
+
         dependencies = get_dependencies(file_path)
 
         if module_name not in dic:
             dic[module_name] = []
-            
+
         dic[module_name] = dependencies
 
     return dic
@@ -108,9 +109,9 @@ def create_graph(dic):
 
 def plot_graph(g):
     plt.figure(1, figsize=(20,20))
-    nx.draw_circular(g, nodelist=dic.keys(), with_labels=True, node_size=30, font_size=8)
+    nx.draw_circular(g, nodelist=g.nodes, with_labels=True, node_size=30, font_size=8)
     plt.show()
-    
+
 def plot_subgraph_with_circ_deps(g):
     # use nx.simple_cycles to print cycles
     print("dependency cycles: ", list(nx.simple_cycles(g)))
@@ -125,24 +126,24 @@ def print_modules_dep(dic):
             print('\t', vi)
         print()
 
-odoo_dir = '/home/lukas/Desktop/'
+odoo_dir = '/usr/share/'
 
 def main():
     # get a list of all files, e.g.:
     # = [/usr/share/proj1/mod1, /usr/share/proj2/mod2, ..., /usr/share/proj3/mod3]
     list_of_files = get_list_of_files(odoo_dir)
-    
+
     # get only the manifest files from that list
     manifest_files = get_manifest_files(list_of_files)
-    
+
     # get adjacency list of module dependencies, e.g.:
     # {'module_name': [module_name_dep1, module_name_dep2, ..., module_name_depX]}
     dic = get_adjacency_list(manifest_files)
-    
-    print_modules_dep(dic)
-    
+
     # construct a graph from the adjacency list
     g = create_graph(dic)
+
+    print_modules_dep(dic)
 
     plot_subgraph_with_circ_deps(g)
 
