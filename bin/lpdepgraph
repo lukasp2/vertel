@@ -104,11 +104,19 @@ def create_graph(dic):
             # TODO: add node if not exists
             g.add_edge(node, neigh)
 
-    #plt.figure(1, figsize=(20,20))
-    #nx.draw_circular(g, nodelist=dic.keys(), with_labels=True, node_size=30, font_size=8)
-    #plt.show()
-
     return g
+
+def plot_graph(g):
+    plt.figure(1, figsize=(20,20))
+    nx.draw_circular(g, nodelist=dic.keys(), with_labels=True, node_size=30, font_size=8)
+    plt.show()
+    
+def plot_subgraph_with_circ_deps(g):
+    # use nx.simple_cycles to print cycles
+    print("dependency cycles: ", list(nx.simple_cycles(g)))
+
+    g_sub = g.subgraph(list(nx.simple_cycles(g)))
+    plot_graph(g_sub)
 
 def print_modules_dep(dic):
     for k, v in dic.items():
@@ -136,7 +144,6 @@ def main():
     # construct a graph from the adjacency list
     g = create_graph(dic)
 
-    # use nx.simple_cycles to find cycles
-    print("dependency cycles: ", list(nx.simple_cycles(g)))
+    plot_subgraph_with_circ_deps(g)
 
 main()
