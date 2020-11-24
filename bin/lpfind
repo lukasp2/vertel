@@ -22,7 +22,7 @@ ODOODIR="/usr/share/" # TODO: *odoo* | OCB
 # >>> -n: SEARCH MODULE NAME (default)
 if [[ $n == y ]]; then
     echo -e "MODEL\t\t$MODELNAME"
-    echo -e "\nORIGIN
+    echo -e "\nORIGIN (_name = $MODELNAME)"
     grep -Rns --include=*py " _name.\?=.\?\(\\\"\|'\)$MODELNAME\(\\\"\|'\)" $ODOODIR | cut -d ":" -f1,2
     echo -e "\nINHERITANCES (_inherit = $MODELNAME)"
     grep -Rns --include=*py " _inherit.\?=.\?\(\\\"\|'\)$MODELNAME\(\\\"\|'\)" $ODOODIR | cut -d ":" -f1,2
