@@ -1,7 +1,16 @@
 #!/usr/bin/env python3
 
-# update python: https://www.itsupportwale.com/blog/how-to-upgrade-to-python-3-8-on-ubuntu-18-04-lts/
-# pip3 requirements: networkx, matplotlib
+# update python: 
+# https://www.itsupportwale.com/blog/how-to-upgrade-to-python-3-8-on-ubuntu-18-04-lts/
+
+# install python3.8-distutils: (?)
+# sudo apt install python3.8-distutils
+
+# reinstall pip:
+# curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+# python3 get-pip.py --force-reinstall
+
+# pip3 install networkx matplotlib
 
 import networkx as nx
 import matplotlib.pyplot as plt
@@ -114,13 +123,6 @@ def plot_graph(g):
     nx.draw_circular(g, nodelist=g.nodes, with_labels=True, node_size=30, font_size=8)
     plt.show()
 
-def plot_subgraph_with_circ_deps(g):
-    # use nx.simple_cycles to print cycles
-    print("dependency cycles: ", list(nx.simple_cycles(g)))
-
-    g_sub = g.subgraph(list(nx.simple_cycles(g)))
-    plot_graph(g_sub)
-
 def print_modules_dep(dic):
     for k, v in dic.items():
         print(k)
@@ -145,8 +147,12 @@ def main():
     # construct a graph from the adjacency list
     g = create_graph(dic)
 
+    # print adjacency list
     print_modules_dep(dic)
 
-    plot_subgraph_with_circ_deps(g)
-
+    # print circular dependencies
+    list_of_cycles = list(nx.simple_cycles(g))
+    for cycle in list_of_cycles:
+        print("dependency cycle: ", cycle)
+    
 main()
