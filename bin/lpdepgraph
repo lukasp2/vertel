@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
-# pip3 requirements: networkx matplotlib
+# update python: https://www.itsupportwale.com/blog/how-to-upgrade-to-python-3-8-on-ubuntu-18-04-lts/
+# pip3 requirements: networkx, matplotlib
+
 import networkx as nx
 import matplotlib.pyplot as plt
 
