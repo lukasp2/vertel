@@ -40,7 +40,7 @@ done
 
 # >>> -r | --restart
 if [[ $r == y ]]; then
-    odoorestart; echo "restart done"
+    odoorestart && echo "restart DONE"
 fi
     
 # >>> -g | --grep
