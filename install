@@ -1,13 +1,15 @@
 #!/bin/bash
 
+CWD=$(pwd); cd /
+
 if [ -d "$HOME/lptools" ]; then
     rm -rf $HOME/lptools
 fi
 
 git clone https://github.com/lukasp2/vertel.git ~/lptools
 
+cd $pwd
+
 if [ ! -f "$HOME/.bash_aliases" ] || [ -z $(grep -o "$HOME/lptools/bin" $HOME/.bash_aliases) ]; then
     echo "PATH=$HOME/lptools/bin:$PATH" >> $HOME/.bash_aliases
 fi
-
-# [ -z $(echo $PATH | grep -o "$HOME/lptools/bin") ] && PATH="$HOME/lptools/bin:$PATH"
