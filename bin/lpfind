@@ -45,10 +45,9 @@ elif [[ $c == y && $f == y ]]; then
 elif [[ $c == y ]]; then
     grep -Rns --include=*py " class $CLASSNAME\(.*\)" $ODOODIR
 
-# >>> -f: SEARCH CLASS NAME
+# >>> -f: SEARCH FIELD NAME
 elif [[ $f == y ]]; then
-    grep -Rns --include=*py " $FIELDNAME.\?=.\?" $ODOODIR
-
+    grep -Rns --include=*py " $FIELDNAME.\?=.\?fields\." $ODOODIR
 fi
 
 cd $LOC
