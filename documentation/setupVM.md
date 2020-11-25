@@ -20,7 +20,10 @@ ip a
 ```
 
 ## on local system and local SSH-ed to VM
-* go to /etc/hosts and add the IP address of your new VM
+* set hostname for new system in /etc/hosts
+```
+sudo nano /etc/hosts
+```
 
 * SSH to VM
 
@@ -49,11 +52,7 @@ odoogitpull
 ```
 
 ## on local system
-* set hostname for new system in /etc/hosts
-```
-sudo nano /etc/hosts
-```
 * setup ssh keys
 ```
-ssh-copy-id $USER@odoo8
+ssh-copy-id [REMOTE_USERNAME]@odoo8
 ```
