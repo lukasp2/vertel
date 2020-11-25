@@ -40,9 +40,12 @@ done
 
 # >>> -r | --restart
 if [[ $r == y ]]; then
-    odoorestart && echo "restart DONE"
+    if [ -f /etc/odoo/odoo.tools ]; then
+        . /etc/odoo/odoo.tools
+    fi
+    echo "sudo service odoo restart" && sudo service odoo restart && echo "restart DONE"
 fi
-    
+
 # >>> -g | --grep
 if [[ $g == y ]]; then
     tail -f /var/log/odoo/odoo-server.log | grep "~"
