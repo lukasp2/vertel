@@ -65,3 +65,4 @@ usage: `lpbranches`
 * **lpsetperm** - odoosetperm with support for individual projects \
 usage: `lpsetperm [-p PROJECT] ...`
 
+* **lpfind** [PATCH] - in python, with better and more scalable searching \
