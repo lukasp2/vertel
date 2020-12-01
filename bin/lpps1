@@ -52,7 +52,7 @@ done
 
 if [[ $p == y ]]; then
     color_my_prompt
-    cat $HOME/lpaddons/resources/lpps1.txt >> $HOME/.bash_aliases
+    cat $HOME/lptools/resources/lpps1.txt >> $HOME/.bash_aliases
     echo "new PS1 variable set and sent to $HOME/.bash_aliases!"
 elif [[ $t == y ]]; then
     color_my_prompt
