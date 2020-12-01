@@ -47,8 +47,9 @@ odoogitclone [PROJ1,PROJ2, ...,PROJX]
 ```
 export ODOOADDONS=`ls -d /usr/share/odoo-* /usr/share/odooext-* 2> /dev/null | grep -v odoo-addons | paste -sd ","`
 odooaddons
-odoosetperm
 odoogitpull
+odoosetperm
+lpgitpull
 ```
 
 ## on local system
