@@ -57,3 +57,8 @@ lpgitpull
 ```
 ssh-copy-id [REMOTE_USERNAME]@odoo8
 ```
+
+## after
+* restart VM
+* odooupdm dermanord reseller_dermanord (?)
+* odooupdm dermanord account_dermanord
