@@ -1,0 +1,3 @@
+#!/bin/bash
+
+echo "" > /usr/lib/python3/dist-packages/odoo/addons/website/static/src/js/user_custom_javascript.js
