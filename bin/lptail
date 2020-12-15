@@ -48,7 +48,7 @@ fi
 
 # >>> -g | --grep
 if [[ $g == y ]]; then
-    tail -f /var/log/odoo/odoo-server.log | grep "~"
+    tail -f /var/log/odoo/odoo-server.log | grep "~" #| cut -d "~" -f2
 fi
 
 # >>> NORMAL OUTPUT
