@@ -10,7 +10,8 @@ sudo apt-get install nginx
   * set NGINX to listen to port 8080 instead (varnish will be on 80)
     * copy ```/etc/nginx/sites-available/default```
   * create an configuration file for odoo for NGINX (ref: ```https://www.odoo.com/documentation/14.0/setup/deploy.html```)
-    * copy ```/etc/nginx/sites-enabled/odoo.conf```
+    * copy ```/etc/nginx/sites-available/odoo.conf```
+  * create symlinks to all files in ```/etc/nginx/sites-available``` from ```/etc/nginx/sites-enabled```
   * allow 8080 through firewall
     * ```sudo ufw allow 8080```
   * reload NGINX
