@@ -1,5 +1,5 @@
 ### How To setup an NGINX server with SSL running Odoo 14 with Varnish cache.
-All files metioned are (or should be) included in this directory.
+All files metioned are included in this directory.
 
 #### Step 1: NGINX
   * install NGINX
@@ -17,7 +17,6 @@ sudo apt-get install nginx
     * ```systemctl reload nginx```
 
 #### Step 2: Get an SSL certificate
-ref: https://www.digitalocean.com/community/tutorials/how-to-create-an-ssl-certificate-on-nginx-for-ubuntu-14-04
 ```
 sudo mkdir /etc/nginx/ssl
 sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/nginx/ssl/nginx.key -out /etc/nginx/ssl/nginx.crt
@@ -40,6 +39,9 @@ Note: When openssl promts for a "Common Name", enter ip adress of server.
 * ```sudo nginx -t```
 * ```curl -I [ip of server]```, from remote machine
 
-#### sources
-https://www.youtube.com/watch?v=lC3rbIn2Sjc
+#### Sources
+* install NGINX with varnish \
+  https://www.youtube.com/watch?v=lC3rbIn2Sjc
+* SSL cert \
+  ref: https://www.digitalocean.com/community/tutorials/how-to-create-an-ssl-certificate-on-nginx-for-ubuntu-14-04
 
