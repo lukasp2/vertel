@@ -34,9 +34,9 @@ Note: When openssl promts for a "Common Name", enter ip adress of server.
 * ```sudo systemctl restart varnish```
 
 #### Step 4: Test
-* ```netstat -tupln```
-  * should show varnish on port 80, NGINX on port 8080
 * ```sudo nginx -t```
+* ```sudo netstat -tupln```
+  * should show varnish on port 80, NGINX on port 8080
 * ```curl -I [ip of server]```, from remote machine
 
 #### Sources
