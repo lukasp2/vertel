@@ -7,17 +7,15 @@ All files metioned are included in this directory.
 sudo apt-get update
 sudo apt-get install nginx
 ```
-  * set NGINX to listen to port 8080 instead (varnish will be on 80)
-    * copy ```/etc/nginx/sites-available/default```
   * create an configuration file for odoo for NGINX (ref: ```https://www.odoo.com/documentation/14.0/setup/deploy.html```)
     * copy ```/etc/nginx/sites-available/odoo.conf```
-  * create symlinks to all files in ```/etc/nginx/sites-available``` from ```/etc/nginx/sites-enabled```
-  * allow 8080 through firewall
+  * create symlinks to the file in ```/etc/nginx/sites-available``` from ```/etc/nginx/sites-enabled```
+  * allow 8080 through firewall (if ufw is used)
     * ```sudo ufw allow 8080```
   * reload NGINX
     * ```systemctl reload nginx```
 
-#### Step 2: Get an SSL certificate
+#### Step 2: Get an SSL certificate (openssl will not generate a valid SSL-cert, so it can only be used for testing)
 ```
 sudo mkdir /etc/nginx/ssl
 sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/nginx/ssl/nginx.key -out /etc/nginx/ssl/nginx.crt
