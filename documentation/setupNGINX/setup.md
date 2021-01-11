@@ -38,9 +38,16 @@ Note: When openssl promts for a "Common Name", enter ip adress of server.
   * should show varnish on port 80, NGINX on port 8080
 * ```curl -I [ip of server]```, from remote machine
 
+#### Step 5: LetsEncrypt
+* Use certbot to automate obtaining and installing a certificate for Nginx.
+  * ```sudo apt install certbot```
+  * ```sudo apt-get install python3-certbot-nginx```
+  * ```sudo certbot --nginx```
+
 #### Sources
-* install NGINX with varnish \
+* install NGINX with Varnish \
   https://www.youtube.com/watch?v=lC3rbIn2Sjc
 * SSL cert \
   ref: https://www.digitalocean.com/community/tutorials/how-to-create-an-ssl-certificate-on-nginx-for-ubuntu-14-04
-
+* LetsEncrypt \
+  ref: https://certbot.eff.org/docs/using.html?highlight=renew#getting-certificates-and-choosing-plugins
