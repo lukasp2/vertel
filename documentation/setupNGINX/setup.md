@@ -42,7 +42,7 @@ Note: When openssl promts for a "Common Name", enter ip adress of server.
 * Obtain and install a certificate for Nginx.
   * Alt. 1: With odoo GUI.
     * odoogitclone --server-- TODO
-    * create conf in /etc/sudoers.d/
+    * create conf in /etc/sudoers.d/, i.e. letsencrypt.conf (copy _etc_sudoers_d)
     * run letsencrypt server action 
   * Alt. 2 - With certbot TUI.
     * ```sudo apt install certbot```
