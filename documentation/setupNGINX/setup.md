@@ -39,10 +39,15 @@ Note: When openssl promts for a "Common Name", enter ip adress of server.
 * ```curl -I [ip of server]```, from remote machine
 
 #### Step 5: LetsEncrypt
-* Use certbot to automate obtaining and installing a certificate for Nginx.
-  * ```sudo apt install certbot```
-  * ```sudo apt-get install python3-certbot-nginx```
-  * ```sudo certbot --nginx```
+* Obtain and install a certificate for Nginx.
+  * Alt. 1: With odoo GUI.
+    * odoogitclone --server-- TODO
+    * create conf in /etc/sudoers.d/
+    * run letsencrypt server action 
+  * Alt. 2 - With certbot TUI.
+    * ```sudo apt install certbot```
+    * ```sudo apt-get install python3-certbot-nginx```
+    * ```sudo certbot --nginx```
 
 #### Sources
 * install NGINX with Varnish \
