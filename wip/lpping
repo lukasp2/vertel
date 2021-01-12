@@ -13,18 +13,79 @@ class bcolors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
     
-hosts = { "Maggie, Odoo 8" : "azzar.se",
-          "Homer, Odoo 10" : "azzar.be",
-          "Breezy, Odoo 12" : "azzar.pl",
-          "Burns, Odoo 12" : "azzar.net",
-          "Maria Åkerberg" : "mariaakerberg.se",
+hosts = {
+    # Externa servrar
+    "Maria Åkerberg" : "mariaakerberg.se",
+
+    # Servrar på Kind
+    "Ring, Odoo 12" : "azzar.pl",
+    "Breezy, Odoo 13" : "asd.azzar.it",
+    # cont ...
+    "Beaver" : "185.39.146.217",
+    "Drake (PowerDNS)" : "185.39.146.218",
+    "Fossa (Odoo 12, AF)" : "185.39.146.149",
+    "Heron" : "185.39.146.220",
+    "Lynx" : "185.39.146.221",
+    "Pangolin" : "185.39.146.152",
+    "Tahr" : " 185.39.146.153",
+    "Xerus" : " 185.39.146.154",
+    "Gorilla" : " 185.39.146.156",
+    "Ring (Odoo 12)" : "185.39.146.155",
+    "Hoary" : "185.39.146.157",
+    "Breezy, Odoo 13" : "185.39.146.158",
+    
+    # Nygatan 18 Servrar
+    "Amber" : "https://amber.vertel.se",
+    "Barney (Maria Åkerberg, Odoo 14)" : "http://barney.vertel.se",
+    "Abe (runbot)" : "azzar.org",
+    "Bart" : "http://bart.vertel.se",
+    "Burns " : "azzar.net",
+    "Cyrus (IPA)" : "http://cyrus.vertel.se",
+    "Edna" : "http://edna.vertel.se",
+    "Eliza" : "http://eliza.vertel.se",
+    "Homer (Odoo 10)" : "azzar.be",
+    "Hugo (kubernetes)" : "http://hugo.vertel.se",
+    "Lisa (nextcloud)" : "http://lisa.vertel.se",
+    "Maggie (Odoo8)" : "azzar.se",
+    "Marge (E-post/MX10)" : "http://marge.vertel.se",
+    "Mona" : "http://mona.vertel.se",
+    "Ned (DNS4)" : "http://ned.vertel.se",
+    "Rita (Odoo 13)" : "http://rita.vertel.se",
+    "Skinner (Asterisk / BBB)" : "http://skinner.vertel.se",
+    "Snowball (BBB)" : "http://snowball.vertel.se",
+    "Stanley (PowerDNS)" : "http://stanley.vertel.se",
+    "Todd (Odoo 12)" : "http://todd.vertel.se",
+    "Wiggum (Apache/ PHP)" : "http://wiggum.vertel.se",
+
+    # Interna maskiner
+    "odooutv" : "192.168.1.90",
+    "odooutv8" : "192.168.1.11",
+    "odooutv10" : "192.168.1.92",
+    "odooutv12" : "odooutv12.vertel.se",
+    "odooutv13" : "192.168.1.218",
+    "odooutv14" : "192.168.1.10",
 }
 
-for k,v in hosts.items():
-    print(k + " (" + v + "): ", end="")
-    bash = "curl -sI " + v + " | head -n 1"
-    output = os.popen(bash).read()
-    if output.strip() == "HTTP/1.1 200 OK":
-        print(bcolors.OKGREEN + output + bcolors.NC, end="")
+def ping(name, url):
+    print(name + " (" + url + "): ", end="")
+    bash = "curl -sI " + url + " | head -n 1"
+    output = os.popen(bash).read().strip()
+    if output == "HTTP/1.1 200 OK":
+        print(bcolors.OKGREEN + output + bcolors.NC, flush=True)
+    elif output == "":
+        print("", flush=True)
     else:
-        print(bcolors.FAIL + output + bcolors.NC, end="")
+        print(bcolors.FAIL + output + bcolors.NC, flush=True)
+
+def main():
+    for k,v in hosts.items():
+        ping(k, v)
+
+main()
+"""
+if ssh "$TARGET" bash -c 'ps aux | grep -q mysqld'; then
+  echo "$TARGET alive and running MySQL"
+else
+  echo "$TARGET offline or MySQL crashed"
+fi
+"""
