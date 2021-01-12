@@ -1,0 +1,8 @@
+#
+# Add specific sudo commands odoo need to run here.
+#
+
+## Odoo user specific
+
+# Required for for example the LetsEncrypt module
+odoo ALL = NOPASSWD: /usr/sbin/service nginx reload
