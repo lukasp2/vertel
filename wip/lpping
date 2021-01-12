@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import os
+import time
 
 class bcolors:
     HEADER = '\033[95m'
@@ -41,7 +42,7 @@ hosts = {
     "Bart" : "http://bart.vertel.se",
     "Burns " : "azzar.net",
     "Cyrus (IPA)" : "http://cyrus.vertel.se",
-    "Edna" : "http://edna.vertel.se",
+    "Edna (gitlab)" : "http://edna.vertel.se",
     "Eliza" : "http://eliza.vertel.se",
     "Homer (Odoo 10)" : "azzar.be",
     "Hugo (kubernetes)" : "http://hugo.vertel.se",
@@ -68,7 +69,7 @@ hosts = {
 
 def ping(name, url):
     print(name + " (" + url + "): ", end="")
-    bash = "curl -sI " + url + " | head -n 1"
+    bash = "timeout 2 curl -sI " + url + " | head -n 1"
     output = os.popen(bash).read().strip()
     if output == "HTTP/1.1 200 OK":
         print(bcolors.OKGREEN + output + bcolors.NC, flush=True)
@@ -78,10 +79,15 @@ def ping(name, url):
         print(bcolors.FAIL + output + bcolors.NC, flush=True)
 
 def main():
-    for k,v in hosts.items():
-        ping(k, v)
+    while True:
+        for k,v in hosts.items():
+            ping(k, v)
+        print("\n\n")
+        
+        time.sleep(10)
 
 main()
+
 """
 if ssh "$TARGET" bash -c 'ps aux | grep -q mysqld'; then
   echo "$TARGET alive and running MySQL"
