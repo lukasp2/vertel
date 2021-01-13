@@ -24,7 +24,7 @@ internal_servers = {
     "Barney (Maria Åkerberg, Odoo 14)" : "http://barney.vertel.se",
     "Abe (runbot)" : "azzar.org",
     "Bart" : "http://bart.vertel.se",
-    "Burns " : "azzar.net",
+    "Burns" : "azzar.net",
     "Cyrus (IPA)" : "http://cyrus.vertel.se",
     "Edna (gitlab)" : "http://edna.vertel.se",
     "Eliza" : "http://eliza.vertel.se",
@@ -45,7 +45,7 @@ internal_servers = {
 
 kind_servers = {
     "Beaver" : "185.39.146.217",
-    "Drake (PowerDNS)" : "185.39.146.218",
+    "Drake (PowerDNS)" : "185.39.146.148",
     "Fossa (Odoo 12, AF)" : "185.39.146.149",
     "Heron" : "185.39.146.220",
     "Lynx" : "185.39.146.221",
@@ -59,8 +59,8 @@ kind_servers = {
 }
 
 internal_machines = {
-    "odooutv" : "192.168.1.90",
-    "odooutv8" : "192.168.1.11",
+    #"odooutv" : "192.168.1.90",
+    #"odooutv8" : "192.168.1.11",
     "odooutv10" : "192.168.1.92",
     "odooutv12" : "odooutv12.vertel.se",
     "odooutv13" : "192.168.1.218",
