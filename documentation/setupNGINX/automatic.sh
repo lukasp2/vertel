@@ -25,6 +25,7 @@ cat _lib_systemd_system_varnish.service > /lib/systemd/system/varnish.service
 
 systemctl daemon-reload
 
+mkdir /etc/varnish
 touch /etc/varnish/default.vcl
 cat _etc_varnish_default.vcl > /etc/varnish/default.vcl
 
