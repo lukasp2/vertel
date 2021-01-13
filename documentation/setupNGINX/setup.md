@@ -38,6 +38,8 @@ Note: When openssl promts for a "Common Name", enter ip adress of server.
 * ```curl -I [ip of server]```, from remote machine
 
 #### Step 5: LetsEncrypt
+* 
+
 * Obtain and install a certificate for Nginx.
   * Alt. 1: With odoo GUI.
     * odoogitclone --server-- TODO
