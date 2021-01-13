@@ -4,8 +4,7 @@ All files metioned are included in this directory.
 #### Step 1: NGINX
   * install NGINX
 ```
-sudo apt-get update
-sudo apt-get install nginx
+sudo apt update && sudo apt install nginx
 ```
   * create an configuration file for odoo for NGINX (ref: ```https://www.odoo.com/documentation/14.0/setup/deploy.html```)
     * copy ```/etc/nginx/sites-available/odoo.conf```
