@@ -13,29 +13,12 @@ class bcolors:
     NC='\033[0m'
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
-    
-hosts = {
-    # Externa servrar
-    "Maria Åkerberg" : "mariaakerberg.se",
 
-    # Servrar på Kind
-    "Ring, Odoo 12" : "azzar.pl",
-    "Breezy, Odoo 13" : "asd.azzar.it",
-    # cont ...
-    "Beaver" : "185.39.146.217",
-    "Drake (PowerDNS)" : "185.39.146.218",
-    "Fossa (Odoo 12, AF)" : "185.39.146.149",
-    "Heron" : "185.39.146.220",
-    "Lynx" : "185.39.146.221",
-    "Pangolin" : "185.39.146.152",
-    "Tahr" : " 185.39.146.153",
-    "Xerus" : " 185.39.146.154",
-    "Gorilla" : " 185.39.146.156",
-    "Ring (Odoo 12)" : "185.39.146.155",
-    "Hoary" : "185.39.146.157",
-    "Breezy, Odoo 13" : "185.39.146.158",
-    
-    # Nygatan 18 Servrar
+external_servers = {
+    "Maria Åkerberg" : "mariaakerberg.se",
+}
+
+internal_servers = {
     "Amber" : "https://amber.vertel.se",
     "Barney (Maria Åkerberg, Odoo 14)" : "http://barney.vertel.se",
     "Abe (runbot)" : "azzar.org",
@@ -57,8 +40,24 @@ hosts = {
     "Stanley (PowerDNS)" : "http://stanley.vertel.se",
     "Todd (Odoo 12)" : "http://todd.vertel.se",
     "Wiggum (Apache/ PHP)" : "http://wiggum.vertel.se",
+}
 
-    # Interna maskiner
+kind_servers = {
+    "Beaver" : "185.39.146.217",
+    "Drake (PowerDNS)" : "185.39.146.218",
+    "Fossa (Odoo 12, AF)" : "185.39.146.149",
+    "Heron" : "185.39.146.220",
+    "Lynx" : "185.39.146.221",
+    "Pangolin" : "185.39.146.152",
+    "Tahr" : " 185.39.146.153",
+    "Xerus" : " 185.39.146.154",
+    "Gorilla" : " 185.39.146.156",
+    "Ring (azzar.pl Odoo 12)" : "185.39.146.155",
+    "Hoary" : "185.39.146.157",
+    "Breezy (azzar.it Odoo 13)" : "185.39.146.158",
+}
+
+internal_machines = {
     "odooutv" : "192.168.1.90",
     "odooutv8" : "192.168.1.11",
     "odooutv10" : "192.168.1.92",
@@ -67,7 +66,7 @@ hosts = {
     "odooutv14" : "192.168.1.10",
 }
 
-def ping(name, url):
+def ping_host(name, url):
     print(name + " (" + url + "): ", end="")
     bash = "timeout 2 curl -sI " + url + " | head -n 1"
     output = os.popen(bash).read().strip()
@@ -78,11 +77,21 @@ def ping(name, url):
     else:
         print(bcolors.FAIL + output + bcolors.NC, flush=True)
 
+def ping_hosts(hosts):
+    for k,v in hosts.items():
+        ping_host(k, v)
+    print()
+
 def main():
     while True:
-        for k,v in hosts.items():
-            ping(k, v)
-        print("\n\n")
+        print("external_servers")
+        ping_hosts(external_servers)
+        print("internal_servers")
+        ping_hosts(internal_servers)
+        print("kind_servers")
+        ping_hosts(kind_servers)
+        print("internal_machines")
+        ping_hosts(internal_machines)
         
         time.sleep(10)
 
