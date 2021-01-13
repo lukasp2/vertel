@@ -10,6 +10,7 @@ class bcolors:
     OKGREEN = '\033[92m'
     WARNING = '\033[93m'
     FAIL = '\033[91m'
+    YELLOW = '\033[1;33m'
     NC='\033[0m'
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
@@ -67,31 +68,34 @@ internal_machines = {
 }
 
 def ping_host(name, url):
-    print(name + " (" + url + "): ", end="")
+    res = "\t" + name + " " + url
     bash = "timeout 2 curl -sI " + url + " | head -n 1"
     output = os.popen(bash).read().strip()
     if output == "HTTP/1.1 200 OK":
-        print(bcolors.OKGREEN + output + bcolors.NC, flush=True)
+        return bcolors.OKGREEN + output.split()[1] + bcolors.NC + res
     elif output == "":
-        print("", flush=True)
+        return bcolors.YELLOW + "???" + bcolors.NC + res
     else:
-        print(bcolors.FAIL + output + bcolors.NC, flush=True)
+        return bcolors.FAIL + output.split()[1] + bcolors.NC + res
 
 def ping_hosts(hosts):
+    res = """"""
     for k,v in hosts.items():
-        ping_host(k, v)
-    print()
+        res += ping_host(k, v) + """\n"""
+    return res + """\n"""
 
 def main():
     while True:
-        print("external_servers")
-        ping_hosts(external_servers)
-        print("internal_servers")
-        ping_hosts(internal_servers)
-        print("kind_servers")
-        ping_hosts(kind_servers)
-        print("internal_machines")
-        ping_hosts(internal_machines)
+        result = """"""
+        result += """external_servers\n"""
+        result += ping_hosts(external_servers)
+        result += """internal_servers\n"""
+        result += ping_hosts(internal_servers)
+        result += """kind_servers\n"""
+        result += ping_hosts(kind_servers)
+        result += """internal_machines\n"""
+        result += ping_hosts(internal_machines)
+        print(result)
         
         time.sleep(10)
 
