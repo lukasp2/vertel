@@ -23,7 +23,6 @@ server {
 	listen [::]:8080 default_server;
 
 	# SSL configuration
-	#
 	listen 443 ssl default_server;
 	listen [::]:443 ssl default_server;
 	ssl_certificate /etc/nginx/ssl/nginx.crt;
