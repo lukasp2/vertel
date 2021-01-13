@@ -33,8 +33,8 @@ Note: When openssl promts for a "Common Name", enter ip adress of server.
 
 #### Step 4: Test
 * ```sudo nginx -t```
-* ```sudo netstat -tupln```
-  * should show varnish on port 80, NGINX on port 8080
+* ```sudo apt install net-tools && sudo netstat -tupln```
+  * should show varnish on port 80, NGINX on port 8080 and 443
 * ```curl -I [ip of server]```, from remote machine
 
 #### Step 5: LetsEncrypt
