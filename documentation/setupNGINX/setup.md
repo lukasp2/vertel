@@ -23,6 +23,8 @@ sudo service nginx restart
 Note: When openssl promts for a "Common Name", enter ip adress of server.
 
 #### Step 3: Varnish
+* Install varnish
+```sudo apt -y install varnish```
 * Change the Varnish default port from 6081 to 80
   * copy ```/lib/systemd/system/varnish.service```
 * reload deamon
