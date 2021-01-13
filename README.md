@@ -49,6 +49,9 @@ OPTIONS:
 -p, --permanent: set PS1 environment variable in ~/.bash_aliases
 ```
 
+* **lpping** - check that all servers are up using curl \
+usage: `lpping`
+
 * **lpdepgraph** - lists all dependencies and finds circular dependencies in manifests (requires pip3 networkx, matplotlib) \
 usage: `lpdepgraph`
 
