@@ -14,7 +14,7 @@ sudo passwd pohluk
 su pohluk
 ```
 
-* if ```ssh locahost``` fails: install openssh-server
+* if ```ssh locahost``` returns Connection refused: install openssh-server
 ```
 sudo apt-get install openssh-server ii.
 ```
