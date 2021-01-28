@@ -40,6 +40,9 @@ OPTIONS:
 * **lpgitpull** - more aggresive odoogitpull, runs `git reset --hard` and `git pull` for each project \
 usage: `lpgitpull`
 
+* **lpbackup** - create a backup of a database \
+usage: `lpbackup [DATABASE]`
+
 ## Extra
 * **lpps1** - a PS1 git branch indicator \
 usage: `lpps1 [OPTIONS]`
