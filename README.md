@@ -58,15 +58,15 @@ usage: `lpping`
 * **lpdepgraph** - lists all dependencies and finds circular dependencies in manifests (requires pip3 networkx, matplotlib) \
 usage: `lpdepgraph`
 
+* **lpbranches** - lists checked out branches in all odoo projects \
+usage: `lpbranches`
+
 ## Upcomming
 * **lpupdm** - odooupdm with input validation (checks if db and modules exist), whitespace support and better output \
 usage: `lpupdm [DB] [MODULE] ...`
 
 * **lpsyncall** - odoosyncall with input validation (fatal bug patch) \
 usage: `lpsyncall [DB] [MODULE] ...`
-
-* **lpbranches** - lists checked out branches in all odoo projects \
-usage: `lpbranches`
 
 * **lpsetperm** - odoosetperm with support for individual projects \
 usage: `lpsetperm [-p PROJECT] ...`
