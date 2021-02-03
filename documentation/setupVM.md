@@ -14,6 +14,11 @@ sudo passwd pohluk
 su pohluk
 ```
 
+* if ```ssh locahost``` returns Connection refused: install openssh-server
+```
+sudo apt-get install openssh-server ii.
+```
+
 * print IP-address for SSH-ing in next step
 ```
 ip a

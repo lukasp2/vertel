@@ -1,0 +1,6 @@
+#!/bin/bash
+
+for project in /usr/share/odoo*; do
+	cd $project
+	echo "$project:" $(git status | head -n 1)
+done

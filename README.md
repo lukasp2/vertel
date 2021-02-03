@@ -40,6 +40,9 @@ OPTIONS:
 * **lpgitpull** - more aggresive odoogitpull, runs `git reset --hard` and `git pull` for each project \
 usage: `lpgitpull`
 
+* **lpbackup** - create a backup of a database \
+usage: `lpbackup [DATABASE]`
+
 ## Extra
 * **lpps1** - a PS1 git branch indicator \
 usage: `lpps1 [OPTIONS]`
@@ -49,8 +52,14 @@ OPTIONS:
 -p, --permanent: set PS1 environment variable in ~/.bash_aliases
 ```
 
+* **lpping** - check that all servers are up using curl \
+usage: `lpping`
+
 * **lpdepgraph** - lists all dependencies and finds circular dependencies in manifests (requires pip3 networkx, matplotlib) \
 usage: `lpdepgraph`
+
+* **lpbranches** - lists checked out branches in all odoo projects \
+usage: `lpbranches`
 
 ## Upcomming
 * **lpupdm** - odooupdm with input validation (checks if db and modules exist), whitespace support and better output \
@@ -58,9 +67,6 @@ usage: `lpupdm [DB] [MODULE] ...`
 
 * **lpsyncall** - odoosyncall with input validation (fatal bug patch) \
 usage: `lpsyncall [DB] [MODULE] ...`
-
-* **lpbranches** - lists checked out branches in all odoo projects \
-usage: `lpbranches`
 
 * **lpsetperm** - odoosetperm with support for individual projects \
 usage: `lpsetperm [-p PROJECT] ...`
