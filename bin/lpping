@@ -17,44 +17,46 @@ class bcolors:
 
 external_servers = {
     "Maria Åkerberg" : "mariaakerberg.se",
+    "(Eliza) Solann" : "https://solann.se",
+    "(Eliza) Solann webshop" : "https://webshop.solann.se",
 }
 
 internal_servers = {
     "Amber" : "https://amber.vertel.se",
     "Barney (Maria Åkerberg, Odoo 14)" : "http://barney.vertel.se",
-    "Abe (runbot)" : "azzar.org",
-    "Bart" : "http://bart.vertel.se",
+    #"Abe (runbot)" : "azzar.org",
+    #"Bart" : "http://bart.vertel.se",
     "Burns" : "azzar.net",
     "Cyrus (IPA)" : "http://cyrus.vertel.se",
-    "Edna (gitlab)" : "http://edna.vertel.se",
-    "Eliza" : "http://eliza.vertel.se",
+    #"Edna (gitlab)" : "http://edna.vertel.se",
+    "Eliza" : "http://azzar.pl",
     "Homer (Odoo 10)" : "azzar.be",
-    "Hugo (kubernetes)" : "http://hugo.vertel.se",
-    "Lisa (nextcloud)" : "http://lisa.vertel.se",
+    #"Hugo (kubernetes)" : "http://hugo.vertel.se",
+    #"Lisa (nextcloud)" : "http://lisa.vertel.se",
     "Maggie (Odoo8)" : "azzar.se",
-    "Marge (E-post/MX10)" : "http://marge.vertel.se",
+    #"Marge (E-post/MX10)" : "http://marge.vertel.se",
     "Mona" : "http://mona.vertel.se",
-    "Ned (DNS4)" : "http://ned.vertel.se",
-    "Rita (Odoo 13)" : "http://rita.vertel.se",
-    "Skinner (Asterisk / BBB)" : "http://skinner.vertel.se",
+    #"Ned (DNS4)" : "http://ned.vertel.se",
+    #"Rita (Odoo 13)" : "http://rita.vertel.se",
+    #"Skinner (Asterisk / BBB)" : "http://skinner.vertel.se",
     "Snowball (BBB)" : "http://snowball.vertel.se",
-    "Stanley (PowerDNS)" : "http://stanley.vertel.se",
-    "Todd (Odoo 12)" : "http://todd.vertel.se",
+    #"Stanley (PowerDNS)" : "http://stanley.vertel.se",
+    #"Todd (Odoo 12)" : "http://todd.vertel.se",
     "Wiggum (Apache/ PHP)" : "http://wiggum.vertel.se",
 }
 
 kind_servers = {
     "Beaver" : "185.39.146.217",
-    "Drake (PowerDNS)" : "185.39.146.148",
-    "Fossa (Odoo 12, AF)" : "185.39.146.149",
-    "Heron" : "185.39.146.220",
+    #"Drake (PowerDNS)" : "185.39.146.148",
+    #"Fossa (Odoo 12, AF)" : "185.39.146.149",
+    #"Heron" : "185.39.146.220",
     "Lynx" : "185.39.146.221",
-    "Pangolin" : "185.39.146.152",
-    "Tahr" : " 185.39.146.153",
-    "Xerus" : " 185.39.146.154",
-    "Gorilla" : " 185.39.146.156",
+    #"Pangolin" : "185.39.146.152",
+    #"Tahr" : " 185.39.146.153",
+    #"Xerus" : " 185.39.146.154",
+    #"Gorilla" : " 185.39.146.156",
     "Ring (azzar.pl Odoo 12)" : "185.39.146.155",
-    "Hoary" : "185.39.146.157",
+    #"Hoary" : "185.39.146.157",
     "Breezy (azzar.it Odoo 13)" : "185.39.146.158",
 }
 
@@ -62,9 +64,9 @@ internal_machines = {
     #"odooutv" : "192.168.1.90",
     #"odooutv8" : "192.168.1.11",
     "odooutv10" : "192.168.1.92",
-    "odooutv12" : "odooutv12.vertel.se",
+    "odooutv12" : "192.168.1.148",
     "odooutv13" : "192.168.1.218",
-    "odooutv14" : "192.168.1.10",
+    #"odooutv14" : "192.168.1.10",
 }
 
 def ping_host(name, url):
@@ -78,23 +80,19 @@ def ping_host(name, url):
     else:
         return bcolors.FAIL + output.split()[1] + bcolors.NC + res
 
-def ping_hosts(hosts):
-    res = """"""
+def ping_hosts(header, hosts):
+    res = header
     for k,v in hosts.items():
         res += ping_host(k, v) + """\n"""
     return res + """\n"""
 
 def main():
     while True:
-        result = """"""
-        result += """external_servers\n"""
-        result += ping_hosts(external_servers)
-        result += """internal_servers\n"""
-        result += ping_hosts(internal_servers)
-        result += """kind_servers\n"""
-        result += ping_hosts(kind_servers)
-        result += """internal_machines\n"""
-        result += ping_hosts(internal_machines)
+        result = """--- LPPING ---\n"""
+        result += ping_hosts("""external_servers\n""", external_servers)
+        result += ping_hosts("""internal_servers\n""", internal_servers)
+        result += ping_hosts("""kind_servers\n""", kind_servers)
+        result += ping_hosts("""internal_machines\n""", internal_machines)
         print(result)
         
         time.sleep(10)
