@@ -15,8 +15,6 @@ if [ ! -z "$ODOOADDONS" ]; then
     cd $CWD
 fi
 
-# TODO: check if all of these are even installed!
-
 echo "[INFO] [BETA] suggestion for modules to update:"
 grep "_" ~/odoogitpull.err | grep ".xml\|.py" | grep -v "create mode" | cut -d "/" -f 1 | sort | uniq
 echo "[INFO] Or update all modules with odooupdm <database> base"
