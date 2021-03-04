@@ -37,7 +37,7 @@ OPTIONS:
 -p, --print: print current addons_path
 ```
 
-* **lpgitpull** - more aggresive odoogitpull, runs `git reset --hard` and `git pull` for each project \
+* **lpgitpull** - more aggresive odoogitpull, runs `git reset --hard`, `git fetch`, and `git pull` for each project \
 usage: `lpgitpull`
 
 * **lpbackup** - create a backup of a database \
