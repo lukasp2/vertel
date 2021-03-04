@@ -8,6 +8,7 @@ if [ ! -z "$ODOOADDONS" ]; then
       cd $p
       echo -n $p " "
       git reset --hard
+      git fetch
       git pull 2> ~/odoogitpull.err
     done
     cat ~/odoogitpull.err
@@ -18,3 +19,6 @@ fi
 
 echo "[BETA] suggestion for modules to update:"
 grep "_" ~/odoogitpull.err | grep ".xml\|.py" | grep -v "create mode" | cut -d "/" -f 1 | sort | uniq
+
+echo "Otherwise update base:"
+echo "odooupdm <database> base"
